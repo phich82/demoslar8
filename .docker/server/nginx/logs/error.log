@@ -1,0 +1,388 @@
+
+2022/02/24 16:11:44 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2022/02/24 16:11:44 [notice] 31#31: gracefully shutting down
+2022/02/24 16:11:44 [notice] 31#31: exiting
+2022/02/24 16:11:44 [notice] 32#32: gracefully shutting down
+2022/02/24 16:11:44 [notice] 33#33: gracefully shutting down
+2022/02/24 16:11:44 [notice] 34#34: gracefully shutting down
+2022/02/24 16:11:44 [notice] 31#31: exit
+2022/02/24 16:11:44 [notice] 32#32: exiting
+2022/02/24 16:11:44 [notice] 33#33: exiting
+2022/02/24 16:11:44 [notice] 34#34: exiting
+2022/02/24 16:11:44 [notice] 32#32: exit
+2022/02/24 16:11:44 [notice] 33#33: exit
+2022/02/24 16:11:44 [notice] 34#34: exit
+2022/02/24 16:11:44 [notice] 1#1: signal 17 (SIGCHLD) received from 34
+2022/02/24 16:11:44 [notice] 1#1: worker process 34 exited with code 0
+2022/02/24 16:11:44 [notice] 1#1: signal 29 (SIGIO) received
+2022/02/24 16:11:44 [notice] 1#1: signal 17 (SIGCHLD) received from 31
+2022/02/24 16:11:44 [notice] 1#1: worker process 31 exited with code 0
+2022/02/24 16:11:44 [notice] 1#1: worker process 33 exited with code 0
+2022/02/24 16:11:44 [notice] 1#1: signal 29 (SIGIO) received
+2022/02/24 16:11:44 [notice] 1#1: signal 17 (SIGCHLD) received from 33
+2022/02/24 16:11:44 [notice] 1#1: signal 17 (SIGCHLD) received from 32
+2022/02/24 16:11:44 [notice] 1#1: worker process 32 exited with code 0
+2022/02/24 16:11:44 [notice] 1#1: exit
+2022/02/24 16:14:01 [notice] 1#1: using the "epoll" event method
+2022/02/24 16:14:01 [notice] 1#1: nginx/1.21.6
+2022/02/24 16:14:01 [notice] 1#1: built by gcc 10.2.1 20210110 (Debian 10.2.1-6) 
+2022/02/24 16:14:01 [notice] 1#1: OS: Linux 5.4.72-microsoft-standard-WSL2
+2022/02/24 16:14:01 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2022/02/24 16:14:01 [notice] 1#1: start worker processes
+2022/02/24 16:14:01 [notice] 1#1: start worker process 31
+2022/02/24 16:14:01 [notice] 1#1: start worker process 32
+2022/02/24 16:14:01 [notice] 1#1: start worker process 33
+2022/02/24 16:14:01 [notice] 1#1: start worker process 34
+2022/02/24 16:17:33 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2022/02/24 16:17:33 [notice] 33#33: gracefully shutting down
+2022/02/24 16:17:33 [notice] 34#34: gracefully shutting down
+2022/02/24 16:17:33 [notice] 34#34: exiting
+2022/02/24 16:17:33 [notice] 32#32: gracefully shutting down
+2022/02/24 16:17:33 [notice] 31#31: gracefully shutting down
+2022/02/24 16:17:33 [notice] 31#31: exiting
+2022/02/24 16:17:33 [notice] 33#33: exiting
+2022/02/24 16:17:33 [notice] 31#31: exit
+2022/02/24 16:17:33 [notice] 34#34: exit
+2022/02/24 16:17:33 [notice] 32#32: exiting
+2022/02/24 16:17:33 [notice] 33#33: exit
+2022/02/24 16:17:33 [notice] 32#32: exit
+2022/02/24 16:17:34 [notice] 1#1: signal 17 (SIGCHLD) received from 32
+2022/02/24 16:17:34 [notice] 1#1: worker process 32 exited with code 0
+2022/02/24 16:17:34 [notice] 1#1: signal 29 (SIGIO) received
+2022/02/24 16:17:34 [notice] 1#1: signal 17 (SIGCHLD) received from 34
+2022/02/24 16:17:34 [notice] 1#1: worker process 31 exited with code 0
+2022/02/24 16:17:34 [notice] 1#1: worker process 33 exited with code 0
+2022/02/24 16:17:34 [notice] 1#1: worker process 34 exited with code 0
+2022/02/24 16:17:34 [notice] 1#1: exit
+2022/02/24 16:21:40 [notice] 1#1: using the "epoll" event method
+2022/02/24 16:21:40 [notice] 1#1: nginx/1.21.6
+2022/02/24 16:21:40 [notice] 1#1: built by gcc 10.2.1 20210110 (Debian 10.2.1-6) 
+2022/02/24 16:21:40 [notice] 1#1: OS: Linux 5.4.72-microsoft-standard-WSL2
+2022/02/24 16:21:40 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2022/02/24 16:21:40 [notice] 1#1: start worker processes
+2022/02/24 16:21:40 [notice] 1#1: start worker process 30
+2022/02/24 16:21:40 [notice] 1#1: start worker process 31
+2022/02/24 16:21:40 [notice] 1#1: start worker process 32
+2022/02/24 16:21:40 [notice] 1#1: start worker process 33
+2022/02/24 16:27:44 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2022/02/24 16:27:44 [notice] 30#30: gracefully shutting down
+2022/02/24 16:27:44 [notice] 30#30: exiting
+2022/02/24 16:27:44 [notice] 31#31: gracefully shutting down
+2022/02/24 16:27:44 [notice] 32#32: gracefully shutting down
+2022/02/24 16:27:44 [notice] 33#33: gracefully shutting down
+2022/02/24 16:27:44 [notice] 30#30: exit
+2022/02/24 16:27:44 [notice] 31#31: exiting
+2022/02/24 16:27:44 [notice] 31#31: exit
+2022/02/24 16:27:44 [notice] 32#32: exiting
+2022/02/24 16:27:44 [notice] 33#33: exiting
+2022/02/24 16:27:44 [notice] 32#32: exit
+2022/02/24 16:27:44 [notice] 33#33: exit
+2022/02/24 16:27:44 [notice] 1#1: signal 17 (SIGCHLD) received from 32
+2022/02/24 16:27:44 [notice] 1#1: worker process 30 exited with code 0
+2022/02/24 16:27:44 [notice] 1#1: worker process 31 exited with code 0
+2022/02/24 16:27:44 [notice] 1#1: worker process 32 exited with code 0
+2022/02/24 16:27:44 [notice] 1#1: worker process 33 exited with code 0
+2022/02/24 16:27:44 [notice] 1#1: exit
+2022/02/24 16:29:02 [notice] 1#1: using the "epoll" event method
+2022/02/24 16:29:02 [notice] 1#1: nginx/1.21.6
+2022/02/24 16:29:02 [notice] 1#1: built by gcc 10.2.1 20210110 (Debian 10.2.1-6) 
+2022/02/24 16:29:02 [notice] 1#1: OS: Linux 5.4.72-microsoft-standard-WSL2
+2022/02/24 16:29:02 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2022/02/24 16:29:02 [notice] 1#1: start worker processes
+2022/02/24 16:29:02 [notice] 1#1: start worker process 32
+2022/02/24 16:29:02 [notice] 1#1: start worker process 33
+2022/02/24 16:29:02 [notice] 1#1: start worker process 34
+2022/02/24 16:29:02 [notice] 1#1: start worker process 35
+2022/02/24 16:33:57 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2022/02/24 16:33:57 [notice] 35#35: gracefully shutting down
+2022/02/24 16:33:57 [notice] 33#33: gracefully shutting down
+2022/02/24 16:33:57 [notice] 32#32: gracefully shutting down
+2022/02/24 16:33:57 [notice] 32#32: exiting
+2022/02/24 16:33:57 [notice] 34#34: gracefully shutting down
+2022/02/24 16:33:57 [notice] 34#34: exiting
+2022/02/24 16:33:57 [notice] 35#35: exiting
+2022/02/24 16:33:57 [notice] 33#33: exiting
+2022/02/24 16:33:57 [notice] 33#33: exit
+2022/02/24 16:33:57 [notice] 32#32: exit
+2022/02/24 16:33:57 [notice] 34#34: exit
+2022/02/24 16:33:57 [notice] 35#35: exit
+2022/02/24 16:33:57 [notice] 1#1: signal 17 (SIGCHLD) received from 32
+2022/02/24 16:33:57 [notice] 1#1: worker process 32 exited with code 0
+2022/02/24 16:33:57 [notice] 1#1: worker process 33 exited with code 0
+2022/02/24 16:33:57 [notice] 1#1: worker process 34 exited with code 0
+2022/02/24 16:33:57 [notice] 1#1: signal 29 (SIGIO) received
+2022/02/24 16:33:57 [notice] 1#1: signal 17 (SIGCHLD) received from 34
+2022/02/24 16:33:57 [notice] 1#1: signal 17 (SIGCHLD) received from 35
+2022/02/24 16:33:57 [notice] 1#1: worker process 35 exited with code 0
+2022/02/24 16:33:57 [notice] 1#1: exit
+2022/02/24 16:35:05 [emerg] 1#1: "server" directive is not allowed here in /etc/nginx/nginx.conf:1
+2022/02/24 16:35:07 [emerg] 1#1: "server" directive is not allowed here in /etc/nginx/nginx.conf:1
+2022/02/24 16:35:10 [emerg] 1#1: "server" directive is not allowed here in /etc/nginx/nginx.conf:1
+2022/02/24 16:35:12 [emerg] 1#1: "server" directive is not allowed here in /etc/nginx/nginx.conf:1
+2022/02/24 16:35:15 [emerg] 1#1: "server" directive is not allowed here in /etc/nginx/nginx.conf:1
+2022/02/24 16:35:18 [emerg] 1#1: "server" directive is not allowed here in /etc/nginx/nginx.conf:1
+2022/02/24 16:35:23 [emerg] 1#1: "server" directive is not allowed here in /etc/nginx/nginx.conf:1
+2022/02/24 16:35:30 [emerg] 1#1: "server" directive is not allowed here in /etc/nginx/nginx.conf:1
+2022/02/24 16:35:44 [emerg] 1#1: "server" directive is not allowed here in /etc/nginx/nginx.conf:1
+2022/02/24 16:36:11 [emerg] 1#1: "server" directive is not allowed here in /etc/nginx/nginx.conf:1
+2022/02/24 16:37:04 [emerg] 1#1: "server" directive is not allowed here in /etc/nginx/nginx.conf:1
+2022/02/24 16:38:05 [emerg] 1#1: "server" directive is not allowed here in /etc/nginx/nginx.conf:1
+2022/02/24 16:39:29 [emerg] 1#1: "server" directive is not allowed here in /etc/nginx/nginx.conf:1
+2022/02/24 16:39:31 [emerg] 1#1: "server" directive is not allowed here in /etc/nginx/nginx.conf:1
+2022/02/24 16:39:34 [emerg] 1#1: "server" directive is not allowed here in /etc/nginx/nginx.conf:1
+2022/02/24 16:39:36 [emerg] 1#1: "server" directive is not allowed here in /etc/nginx/nginx.conf:1
+2022/02/24 16:39:38 [emerg] 1#1: "server" directive is not allowed here in /etc/nginx/nginx.conf:1
+2022/02/24 16:39:41 [emerg] 1#1: "server" directive is not allowed here in /etc/nginx/nginx.conf:1
+2022/02/24 16:39:45 [emerg] 1#1: "server" directive is not allowed here in /etc/nginx/nginx.conf:1
+2022/02/24 16:39:53 [emerg] 1#1: "server" directive is not allowed here in /etc/nginx/nginx.conf:1
+2022/02/24 16:40:07 [emerg] 1#1: "server" directive is not allowed here in /etc/nginx/nginx.conf:1
+2022/02/24 16:40:34 [emerg] 1#1: "server" directive is not allowed here in /etc/nginx/nginx.conf:1
+2022/02/24 16:41:27 [emerg] 1#1: "server" directive is not allowed here in /etc/nginx/nginx.conf:1
+2022/02/24 16:42:28 [emerg] 1#1: "server" directive is not allowed here in /etc/nginx/nginx.conf:1
+2022/02/24 16:43:56 [emerg] 1#1: unknown log format "main" in /etc/nginx/nginx.conf:4
+2022/02/24 16:43:58 [emerg] 1#1: unknown log format "main" in /etc/nginx/nginx.conf:4
+2022/02/24 16:44:00 [emerg] 1#1: unknown log format "main" in /etc/nginx/nginx.conf:4
+2022/02/24 16:44:02 [emerg] 1#1: unknown log format "main" in /etc/nginx/nginx.conf:4
+2022/02/24 16:44:05 [emerg] 1#1: unknown log format "main" in /etc/nginx/nginx.conf:4
+2022/02/24 16:44:07 [emerg] 1#1: unknown log format "main" in /etc/nginx/nginx.conf:4
+2022/02/24 16:44:12 [emerg] 1#1: unknown log format "main" in /etc/nginx/nginx.conf:4
+2022/02/24 16:44:20 [emerg] 1#1: unknown log format "main" in /etc/nginx/nginx.conf:4
+2022/02/24 16:44:34 [emerg] 1#1: unknown log format "main" in /etc/nginx/nginx.conf:4
+2022/02/24 16:45:32 [emerg] 1#1: no "events" section in configuration
+2022/02/24 16:45:35 [emerg] 1#1: no "events" section in configuration
+2022/02/24 16:45:37 [emerg] 1#1: no "events" section in configuration
+2022/02/24 16:45:40 [emerg] 1#1: no "events" section in configuration
+2022/02/24 16:45:42 [emerg] 1#1: no "events" section in configuration
+2022/02/24 16:45:45 [emerg] 1#1: no "events" section in configuration
+2022/02/24 16:45:49 [emerg] 1#1: no "events" section in configuration
+2022/02/24 16:45:57 [emerg] 1#1: no "events" section in configuration
+2022/02/24 16:46:12 [emerg] 1#1: no "events" section in configuration
+2022/02/24 16:55:14 [notice] 1#1: using the "epoll" event method
+2022/02/24 16:55:14 [notice] 1#1: nginx/1.21.6
+2022/02/24 16:55:14 [notice] 1#1: built by gcc 10.2.1 20210110 (Debian 10.2.1-6) 
+2022/02/24 16:55:14 [notice] 1#1: OS: Linux 5.4.72-microsoft-standard-WSL2
+2022/02/24 16:55:14 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2022/02/24 16:55:14 [notice] 1#1: start worker processes
+2022/02/24 16:55:14 [notice] 1#1: start worker process 32
+2022/02/24 16:55:14 [notice] 1#1: start worker process 33
+2022/02/24 16:55:14 [notice] 1#1: start worker process 34
+2022/02/24 16:55:14 [notice] 1#1: start worker process 35
+2022/02/24 16:59:41 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2022/02/24 16:59:41 [notice] 32#32: gracefully shutting down
+2022/02/24 16:59:41 [notice] 32#32: exiting
+2022/02/24 16:59:41 [notice] 34#34: gracefully shutting down
+2022/02/24 16:59:41 [notice] 35#35: gracefully shutting down
+2022/02/24 16:59:41 [notice] 33#33: gracefully shutting down
+2022/02/24 16:59:41 [notice] 32#32: exit
+2022/02/24 16:59:41 [notice] 34#34: exiting
+2022/02/24 16:59:41 [notice] 34#34: exit
+2022/02/24 16:59:41 [notice] 35#35: exiting
+2022/02/24 16:59:41 [notice] 33#33: exiting
+2022/02/24 16:59:41 [notice] 35#35: exit
+2022/02/24 16:59:41 [notice] 33#33: exit
+2022/02/24 16:59:41 [notice] 1#1: signal 17 (SIGCHLD) received from 35
+2022/02/24 16:59:41 [notice] 1#1: worker process 35 exited with code 0
+2022/02/24 16:59:41 [notice] 1#1: signal 29 (SIGIO) received
+2022/02/24 16:59:41 [notice] 1#1: signal 17 (SIGCHLD) received from 32
+2022/02/24 16:59:41 [notice] 1#1: worker process 32 exited with code 0
+2022/02/24 16:59:41 [notice] 1#1: worker process 33 exited with code 0
+2022/02/24 16:59:41 [notice] 1#1: worker process 34 exited with code 0
+2022/02/24 16:59:41 [notice] 1#1: exit
+2022/02/24 17:05:24 [notice] 1#1: using the "epoll" event method
+2022/02/24 17:05:24 [notice] 1#1: nginx/1.21.6
+2022/02/24 17:05:24 [notice] 1#1: built by gcc 10.2.1 20210110 (Debian 10.2.1-6) 
+2022/02/24 17:05:24 [notice] 1#1: OS: Linux 5.4.72-microsoft-standard-WSL2
+2022/02/24 17:05:24 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2022/02/24 17:05:24 [notice] 1#1: start worker processes
+2022/02/24 17:05:24 [notice] 1#1: start worker process 25
+2022/02/24 17:05:24 [notice] 1#1: start worker process 26
+2022/02/24 17:05:24 [notice] 1#1: start worker process 27
+2022/02/24 17:05:24 [notice] 1#1: start worker process 28
+2022/02/24 17:10:57 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2022/02/24 17:10:57 [notice] 25#25: gracefully shutting down
+2022/02/24 17:10:57 [notice] 25#25: exiting
+2022/02/24 17:10:57 [notice] 27#27: gracefully shutting down
+2022/02/24 17:10:57 [notice] 28#28: gracefully shutting down
+2022/02/24 17:10:57 [notice] 26#26: gracefully shutting down
+2022/02/24 17:10:57 [notice] 25#25: exit
+2022/02/24 17:10:57 [notice] 27#27: exiting
+2022/02/24 17:10:57 [notice] 28#28: exiting
+2022/02/24 17:10:57 [notice] 26#26: exiting
+2022/02/24 17:10:57 [notice] 27#27: exit
+2022/02/24 17:10:57 [notice] 28#28: exit
+2022/02/24 17:10:57 [notice] 26#26: exit
+2022/02/24 17:10:57 [notice] 1#1: signal 17 (SIGCHLD) received from 28
+2022/02/24 17:10:57 [notice] 1#1: worker process 25 exited with code 0
+2022/02/24 17:10:57 [notice] 1#1: worker process 28 exited with code 0
+2022/02/24 17:10:57 [notice] 1#1: signal 29 (SIGIO) received
+2022/02/24 17:10:57 [notice] 1#1: signal 17 (SIGCHLD) received from 26
+2022/02/24 17:10:57 [notice] 1#1: worker process 26 exited with code 0
+2022/02/24 17:10:57 [notice] 1#1: worker process 27 exited with code 0
+2022/02/24 17:10:57 [notice] 1#1: exit
+2022/02/24 17:11:35 [notice] 1#1: using the "epoll" event method
+2022/02/24 17:11:35 [notice] 1#1: nginx/1.21.6
+2022/02/24 17:11:35 [notice] 1#1: built by gcc 10.2.1 20210110 (Debian 10.2.1-6) 
+2022/02/24 17:11:35 [notice] 1#1: OS: Linux 5.4.72-microsoft-standard-WSL2
+2022/02/24 17:11:35 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2022/02/24 17:11:35 [notice] 1#1: start worker processes
+2022/02/24 17:11:35 [notice] 1#1: start worker process 32
+2022/02/24 17:11:35 [notice] 1#1: start worker process 33
+2022/02/24 17:11:35 [notice] 1#1: start worker process 34
+2022/02/24 17:11:35 [notice] 1#1: start worker process 35
+2022/02/24 17:12:02 [error] 32#32: *1 open() "/usr/share/nginx/html/favicon.ico" failed (2: No such file or directory), client: 172.25.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost:8787", referrer: "http://localhost:8787/"
+2022/02/24 17:12:43 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2022/02/24 17:12:43 [notice] 33#33: gracefully shutting down
+2022/02/24 17:12:43 [notice] 35#35: gracefully shutting down
+2022/02/24 17:12:43 [notice] 34#34: gracefully shutting down
+2022/02/24 17:12:43 [notice] 34#34: exiting
+2022/02/24 17:12:43 [notice] 32#32: gracefully shutting down
+2022/02/24 17:12:43 [notice] 32#32: exiting
+2022/02/24 17:12:43 [notice] 35#35: exiting
+2022/02/24 17:12:43 [notice] 34#34: exit
+2022/02/24 17:12:43 [notice] 32#32: exit
+2022/02/24 17:12:43 [notice] 35#35: exit
+2022/02/24 17:12:43 [notice] 1#1: signal 17 (SIGCHLD) received from 35
+2022/02/24 17:12:43 [notice] 1#1: worker process 35 exited with code 0
+2022/02/24 17:12:43 [notice] 1#1: signal 29 (SIGIO) received
+2022/02/24 17:12:43 [notice] 1#1: signal 17 (SIGCHLD) received from 32
+2022/02/24 17:12:43 [notice] 1#1: worker process 32 exited with code 0
+2022/02/24 17:12:43 [notice] 1#1: signal 29 (SIGIO) received
+2022/02/24 17:12:43 [notice] 1#1: signal 17 (SIGCHLD) received from 34
+2022/02/24 17:12:43 [notice] 1#1: worker process 34 exited with code 0
+2022/02/24 17:12:43 [notice] 1#1: signal 29 (SIGIO) received
+2022/02/24 17:18:04 [notice] 1#1: using the "epoll" event method
+2022/02/24 17:18:04 [notice] 1#1: nginx/1.21.6
+2022/02/24 17:18:04 [notice] 1#1: built by gcc 10.2.1 20210110 (Debian 10.2.1-6) 
+2022/02/24 17:18:04 [notice] 1#1: OS: Linux 5.4.72-microsoft-standard-WSL2
+2022/02/24 17:18:04 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2022/02/24 17:18:04 [notice] 1#1: start worker processes
+2022/02/24 17:18:04 [notice] 1#1: start worker process 32
+2022/02/24 17:18:04 [notice] 1#1: start worker process 33
+2022/02/24 17:18:04 [notice] 1#1: start worker process 34
+2022/02/24 17:18:04 [notice] 1#1: start worker process 35
+2022/02/24 17:20:26 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2022/02/24 17:20:26 [notice] 32#32: gracefully shutting down
+2022/02/24 17:20:26 [notice] 35#35: gracefully shutting down
+2022/02/24 17:20:26 [notice] 35#35: exiting
+2022/02/24 17:20:26 [notice] 34#34: gracefully shutting down
+2022/02/24 17:20:26 [notice] 34#34: exiting
+2022/02/24 17:20:26 [notice] 33#33: gracefully shutting down
+2022/02/24 17:20:26 [notice] 32#32: exiting
+2022/02/24 17:20:26 [notice] 35#35: exit
+2022/02/24 17:20:26 [notice] 34#34: exit
+2022/02/24 17:20:26 [notice] 33#33: exiting
+2022/02/24 17:20:26 [notice] 32#32: exit
+2022/02/24 17:20:26 [notice] 33#33: exit
+2022/02/24 17:20:26 [notice] 1#1: signal 17 (SIGCHLD) received from 32
+2022/02/24 17:20:26 [notice] 1#1: worker process 32 exited with code 0
+2022/02/24 17:20:26 [notice] 1#1: signal 29 (SIGIO) received
+2022/02/24 17:20:26 [notice] 1#1: signal 17 (SIGCHLD) received from 34
+2022/02/24 17:20:26 [notice] 1#1: worker process 34 exited with code 0
+2022/02/24 17:20:26 [notice] 1#1: signal 29 (SIGIO) received
+2022/02/24 17:20:26 [notice] 1#1: signal 17 (SIGCHLD) received from 35
+2022/02/24 17:20:26 [notice] 1#1: worker process 35 exited with code 0
+2022/02/24 17:20:26 [notice] 1#1: signal 29 (SIGIO) received
+2022/02/24 17:20:26 [notice] 1#1: signal 17 (SIGCHLD) received from 33
+2022/02/24 17:20:26 [notice] 1#1: worker process 33 exited with code 0
+2022/02/24 17:20:26 [notice] 1#1: exit
+2022/02/24 17:21:40 [emerg] 1#1: "server" directive is not allowed here in /etc/nginx/nginx.conf:5
+2022/02/24 17:21:45 [emerg] 1#1: "server" directive is not allowed here in /etc/nginx/nginx.conf:5
+2022/02/24 17:21:49 [emerg] 1#1: "server" directive is not allowed here in /etc/nginx/nginx.conf:5
+2022/02/24 17:21:52 [emerg] 1#1: "server" directive is not allowed here in /etc/nginx/nginx.conf:5
+2022/02/24 17:21:56 [emerg] 1#1: "server" directive is not allowed here in /etc/nginx/nginx.conf:5
+2022/02/24 17:22:00 [emerg] 1#1: "server" directive is not allowed here in /etc/nginx/nginx.conf:5
+2022/02/24 17:22:04 [emerg] 1#1: "server" directive is not allowed here in /etc/nginx/nginx.conf:5
+2022/02/24 17:22:12 [emerg] 1#1: "server" directive is not allowed here in /etc/nginx/nginx.conf:5
+2022/02/24 17:22:26 [emerg] 1#1: "server" directive is not allowed here in /etc/nginx/nginx.conf:5
+2022/02/24 17:22:53 [emerg] 1#1: "server" directive is not allowed here in /etc/nginx/nginx.conf:5
+2022/02/25 17:36:21 [error] 33#33: *5 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.24.0.1, server: magento243.dev, request: "GET / HTTP/1.1", upstream: "fastcgi://172.24.0.4:9000", host: "localhost:8787"
+2022/02/26 17:53:45 [error] 32#32: *2 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.19.0.1, server: magento243.dev, request: "GET / HTTP/1.1", upstream: "fastcgi://172.19.0.4:9000", host: "localhost:8787"
+2022/02/26 17:54:46 [error] 32#32: *2 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.19.0.1, server: magento243.dev, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.19.0.4:9000", host: "localhost:8787", referrer: "http://localhost:8787/"
+2022/02/28 17:36:09 [error] 32#32: *1 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught Zend_Cache_Exception: cache_dir "/var/www/html/var/cache/" is not writable in /var/www/html/vendor/magento/zendframework1/library/Zend/Cache.php:209
+Stack trace:
+#0 /var/www/html/vendor/magento/zendframework1/library/Zend/Cache/Backend/File.php(180): Zend_Cache::throwException('cache_dir "/var...')
+#1 /var/www/html/vendor/colinmollenhour/cache-backend-file/File.php(87): Zend_Cache_Backend_File->setCacheDir('/var/www/html/v...')
+#2 /var/www/html/vendor/magento/zendframework1/library/Zend/Cache.php(153): Cm_Cache_Backend_File->__construct(Array)
+#3 /var/www/html/vendor/magento/zendframework1/library/Zend/Cache.php(94): Zend_Cache::_makeBackend('Cm_Cache_Backen...', Array, true, true)
+#4 /var/www/html/vendor/magento/framework/App/Cache/Frontend/Factory.php(442): Zend_Cache::factory('Magento\\Framewo...', 'Cm_Cache_Backen...', Array, Array, true, true, true)
+#5 /var/www/html/vendor/magento/framework/Cache/Frontend/Adapter/Zend.php(38): Magento\Framework\App\Cache\Frontend\Factory->Magento\Framework\App\C in /var/www/html/vendor/magento/zendframework1/library/Zend/Cache.php on line 209" while reading response header from upstream, client: 192.168.144.1, server: magento243.dev, request: "GET / HTTP/1.1", upstream: "fastcgi://192.168.144.5:9000", host: "localhost:8787"
+2022/02/28 17:36:21 [error] 32#32: *1 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught Zend_Cache_Exception: cache_dir "/var/www/html/var/cache/" is not writable in /var/www/html/vendor/magento/zendframework1/library/Zend/Cache.php:209
+Stack trace:
+#0 /var/www/html/vendor/magento/zendframework1/library/Zend/Cache/Backend/File.php(180): Zend_Cache::throwException('cache_dir "/var...')
+#1 /var/www/html/vendor/colinmollenhour/cache-backend-file/File.php(87): Zend_Cache_Backend_File->setCacheDir('/var/www/html/v...')
+#2 /var/www/html/vendor/magento/zendframework1/library/Zend/Cache.php(153): Cm_Cache_Backend_File->__construct(Array)
+#3 /var/www/html/vendor/magento/zendframework1/library/Zend/Cache.php(94): Zend_Cache::_makeBackend('Cm_Cache_Backen...', Array, true, true)
+#4 /var/www/html/vendor/magento/framework/App/Cache/Frontend/Factory.php(442): Zend_Cache::factory('Magento\\Framewo...', 'Cm_Cache_Backen...', Array, Array, true, true, true)
+#5 /var/www/html/vendor/magento/framework/Cache/Frontend/Adapter/Zend.php(38): Magento\Framework\App\Cache\Frontend\Factory->Magento\Framework\App\C in /var/www/html/vendor/magento/zendframework1/library/Zend/Cache.php on line 209" while reading response header from upstream, client: 192.168.144.1, server: magento243.dev, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://192.168.144.5:9000", host: "localhost:8787", referrer: "http://localhost:8787/"
+2022/02/28 17:39:55 [error] 32#32: *6 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 192.168.144.1, server: magento243.dev, request: "GET / HTTP/1.1", upstream: "fastcgi://192.168.144.5:9000", host: "localhost:8787"
+2022/02/28 17:40:56 [error] 32#32: *8 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 192.168.144.1, server: magento243.dev, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://192.168.144.5:9000", host: "localhost:8787", referrer: "http://localhost:8787/"
+2022/03/01 09:34:16 [error] 32#32: *2 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.20.0.1, server: magento243.dev, request: "GET / HTTP/1.1", upstream: "fastcgi://172.20.0.6:9000", host: "localhost:8787"
+2022/03/01 09:34:29 [error] 32#32: *2 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught ReflectionException: Class Magento\Framework\App\ResourceConnection\Proxy does not exist in /var/www/html/vendor/magento/framework/Code/Reader/ClassReader.php:28
+Stack trace:
+#0 /var/www/html/vendor/magento/framework/Code/Reader/ClassReader.php(28): ReflectionClass->__construct('Magento\\Framewo...')
+#1 /var/www/html/vendor/magento/framework/ObjectManager/Definition/Runtime.php(54): Magento\Framework\Code\Reader\ClassReader->getConstructor('Magento\\Framewo...')
+#2 /var/www/html/vendor/magento/framework/ObjectManager/Factory/Dynamic/Developer.php(48): Magento\Framework\ObjectManager\Definition\Runtime->getParameters('Magento\\Framewo...')
+#3 /var/www/html/vendor/magento/framework/ObjectManager/ObjectManager.php(70): Magento\Framework\ObjectManager\Factory\Dynamic\Developer->create('Magento\\Framewo...')
+#4 /var/www/html/vendor/magento/framework/ObjectManager/Factory/AbstractFactory.php(170): Magento\Framework\ObjectManager\ObjectManager->get('Magento\\Framewo...')
+#5 /var/www/html/vendor/magento/fram in /var/www/html/vendor/magento/framework/Code/Reader/ClassReader.php on line 28" while reading response header from upstream, client: 172.20.0.1, server: magento243.dev, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.20.0.6:9000", host: "localhost:8787", referrer: "http://localhost:8787/"
+2022/03/01 12:20:30 [error] 32#32: *6 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught Zend_Cache_Exception: cache_dir "/var/www/html/var/cache/" is not writable in /var/www/html/vendor/magento/zendframework1/library/Zend/Cache.php:209
+Stack trace:
+#0 /var/www/html/vendor/magento/zendframework1/library/Zend/Cache/Backend/File.php(180): Zend_Cache::throwException('cache_dir "/var...')
+#1 /var/www/html/vendor/colinmollenhour/cache-backend-file/File.php(87): Zend_Cache_Backend_File->setCacheDir('/var/www/html/v...')
+#2 /var/www/html/vendor/magento/zendframework1/library/Zend/Cache.php(153): Cm_Cache_Backend_File->__construct(Array)
+#3 /var/www/html/vendor/magento/zendframework1/library/Zend/Cache.php(94): Zend_Cache::_makeBackend('Cm_Cache_Backen...', Array, true, true)
+#4 /var/www/html/vendor/magento/framework/App/Cache/Frontend/Factory.php(442): Zend_Cache::factory('Magento\\Framewo...', 'Cm_Cache_Backen...', Array, Array, true, true, true)
+#5 /var/www/html/vendor/magento/framework/Cache/Frontend/Adapter/Zend.php(38): Magento\Framework\App\Cache\Frontend\Factory->Magento\Framework\App\C in /var/www/html/vendor/magento/zendframework1/library/Zend/Cache.php on line 209" while reading response header from upstream, client: 172.20.0.1, server: magento243.dev, request: "GET / HTTP/1.1", upstream: "fastcgi://172.20.0.6:9000", host: "localhost:8787"
+2022/03/01 12:20:39 [error] 32#32: *6 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught Zend_Cache_Exception: cache_dir "/var/www/html/var/cache/" is not writable in /var/www/html/vendor/magento/zendframework1/library/Zend/Cache.php:209
+Stack trace:
+#0 /var/www/html/vendor/magento/zendframework1/library/Zend/Cache/Backend/File.php(180): Zend_Cache::throwException('cache_dir "/var...')
+#1 /var/www/html/vendor/colinmollenhour/cache-backend-file/File.php(87): Zend_Cache_Backend_File->setCacheDir('/var/www/html/v...')
+#2 /var/www/html/vendor/magento/zendframework1/library/Zend/Cache.php(153): Cm_Cache_Backend_File->__construct(Array)
+#3 /var/www/html/vendor/magento/zendframework1/library/Zend/Cache.php(94): Zend_Cache::_makeBackend('Cm_Cache_Backen...', Array, true, true)
+#4 /var/www/html/vendor/magento/framework/App/Cache/Frontend/Factory.php(442): Zend_Cache::factory('Magento\\Framewo...', 'Cm_Cache_Backen...', Array, Array, true, true, true)
+#5 /var/www/html/vendor/magento/framework/Cache/Frontend/Adapter/Zend.php(38): Magento\Framework\App\Cache\Frontend\Factory->Magento\Framework\App\C in /var/www/html/vendor/magento/zendframework1/library/Zend/Cache.php on line 209" while reading response header from upstream, client: 172.20.0.1, server: magento243.dev, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.20.0.6:9000", host: "localhost:8787", referrer: "http://localhost:8787/"
+2022/03/01 12:22:26 [error] 32#32: *6 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.20.0.1, server: magento243.dev, request: "GET / HTTP/1.1", upstream: "fastcgi://172.20.0.6:9000", host: "localhost:8787"
+2022/03/01 12:23:18 [error] 32#32: *10 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.20.0.1, server: magento243.dev, request: "GET /admin HTTP/1.1", upstream: "fastcgi://172.20.0.6:9000", host: "localhost:8787"
+2022/03/01 12:23:27 [error] 32#32: *6 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.20.0.1, server: magento243.dev, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.20.0.6:9000", host: "localhost:8787", referrer: "http://localhost:8787/"
+2022/03/01 12:23:32 [error] 32#32: *13 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.20.0.1, server: magento243.dev, request: "GET / HTTP/1.1", upstream: "fastcgi://172.20.0.6:9000", host: "localhost:8787"
+2022/03/01 14:05:13 [error] 32#32: *19 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught Zend_Cache_Exception: cache_dir "/var/www/html/var/cache/" is not writable in /var/www/html/vendor/magento/zendframework1/library/Zend/Cache.php:209
+Stack trace:
+#0 /var/www/html/vendor/magento/zendframework1/library/Zend/Cache/Backend/File.php(180): Zend_Cache::throwException('cache_dir "/var...')
+#1 /var/www/html/vendor/colinmollenhour/cache-backend-file/File.php(87): Zend_Cache_Backend_File->setCacheDir('/var/www/html/v...')
+#2 /var/www/html/vendor/magento/zendframework1/library/Zend/Cache.php(153): Cm_Cache_Backend_File->__construct(Array)
+#3 /var/www/html/vendor/magento/zendframework1/library/Zend/Cache.php(94): Zend_Cache::_makeBackend('Cm_Cache_Backen...', Array, true, true)
+#4 /var/www/html/vendor/magento/framework/App/Cache/Frontend/Factory.php(442): Zend_Cache::factory('Magento\\Framewo...', 'Cm_Cache_Backen...', Array, Array, true, true, true)
+#5 /var/www/html/vendor/magento/framework/Cache/Frontend/Adapter/Zend.php(38): Magento\Framework\App\Cache\Frontend\Factory->Magento\Framework\App\C in /var/www/html/vendor/magento/zendframework1/library/Zend/Cache.php on line 209" while reading response header from upstream, client: 172.20.0.1, server: magento243.dev, request: "GET /admin HTTP/1.1", upstream: "fastcgi://172.20.0.6:9000", host: "localhost:8787"
+2022/03/01 14:05:27 [error] 32#32: *19 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught Zend_Cache_Exception: cache_dir "/var/www/html/var/cache/" is not writable in /var/www/html/vendor/magento/zendframework1/library/Zend/Cache.php:209
+Stack trace:
+#0 /var/www/html/vendor/magento/zendframework1/library/Zend/Cache/Backend/File.php(180): Zend_Cache::throwException('cache_dir "/var...')
+#1 /var/www/html/vendor/colinmollenhour/cache-backend-file/File.php(87): Zend_Cache_Backend_File->setCacheDir('/var/www/html/v...')
+#2 /var/www/html/vendor/magento/zendframework1/library/Zend/Cache.php(153): Cm_Cache_Backend_File->__construct(Array)
+#3 /var/www/html/vendor/magento/zendframework1/library/Zend/Cache.php(94): Zend_Cache::_makeBackend('Cm_Cache_Backen...', Array, true, true)
+#4 /var/www/html/vendor/magento/framework/App/Cache/Frontend/Factory.php(442): Zend_Cache::factory('Magento\\Framewo...', 'Cm_Cache_Backen...', Array, Array, true, true, true)
+#5 /var/www/html/vendor/magento/framework/Cache/Frontend/Adapter/Zend.php(38): Magento\Framework\App\Cache\Frontend\Factory->Magento\Framework\App\C in /var/www/html/vendor/magento/zendframework1/library/Zend/Cache.php on line 209" while reading response header from upstream, client: 172.20.0.1, server: magento243.dev, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.20.0.6:9000", host: "localhost:8787", referrer: "http://localhost:8787/admin"
+2022/03/01 14:07:19 [error] 32#32: *24 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught Zend_Cache_Exception: cache_dir "/var/www/html/var/cache/" is not writable in /var/www/html/vendor/magento/zendframework1/library/Zend/Cache.php:209
+Stack trace:
+#0 /var/www/html/vendor/magento/zendframework1/library/Zend/Cache/Backend/File.php(180): Zend_Cache::throwException('cache_dir "/var...')
+#1 /var/www/html/vendor/colinmollenhour/cache-backend-file/File.php(87): Zend_Cache_Backend_File->setCacheDir('/var/www/html/v...')
+#2 /var/www/html/vendor/magento/zendframework1/library/Zend/Cache.php(153): Cm_Cache_Backend_File->__construct(Array)
+#3 /var/www/html/vendor/magento/zendframework1/library/Zend/Cache.php(94): Zend_Cache::_makeBackend('Cm_Cache_Backen...', Array, true, true)
+#4 /var/www/html/vendor/magento/framework/App/Cache/Frontend/Factory.php(442): Zend_Cache::factory('Magento\\Framewo...', 'Cm_Cache_Backen...', Array, Array, true, true, true)
+#5 /var/www/html/vendor/magento/framework/Cache/Frontend/Adapter/Zend.php(38): Magento\Framework\App\Cache\Frontend\Factory->Magento\Framework\App\C in /var/www/html/vendor/magento/zendframework1/library/Zend/Cache.php on line 209" while reading response header from upstream, client: 172.20.0.1, server: magento243.dev, request: "GET / HTTP/1.1", upstream: "fastcgi://172.20.0.6:9000", host: "localhost:8787"
+2022/03/01 14:07:29 [error] 32#32: *24 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught Zend_Cache_Exception: cache_dir "/var/www/html/var/cache/" is not writable in /var/www/html/vendor/magento/zendframework1/library/Zend/Cache.php:209
+Stack trace:
+#0 /var/www/html/vendor/magento/zendframework1/library/Zend/Cache/Backend/File.php(180): Zend_Cache::throwException('cache_dir "/var...')
+#1 /var/www/html/vendor/colinmollenhour/cache-backend-file/File.php(87): Zend_Cache_Backend_File->setCacheDir('/var/www/html/v...')
+#2 /var/www/html/vendor/magento/zendframework1/library/Zend/Cache.php(153): Cm_Cache_Backend_File->__construct(Array)
+#3 /var/www/html/vendor/magento/zendframework1/library/Zend/Cache.php(94): Zend_Cache::_makeBackend('Cm_Cache_Backen...', Array, true, true)
+#4 /var/www/html/vendor/magento/framework/App/Cache/Frontend/Factory.php(442): Zend_Cache::factory('Magento\\Framewo...', 'Cm_Cache_Backen...', Array, Array, true, true, true)
+#5 /var/www/html/vendor/magento/framework/Cache/Frontend/Adapter/Zend.php(38): Magento\Framework\App\Cache\Frontend\Factory->Magento\Framework\App\C in /var/www/html/vendor/magento/zendframework1/library/Zend/Cache.php on line 209" while reading response header from upstream, client: 172.20.0.1, server: magento243.dev, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.20.0.6:9000", host: "localhost:8787", referrer: "http://localhost:8787/"
+2022/03/01 14:08:54 [error] 32#32: *24 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.20.0.1, server: magento243.dev, request: "GET / HTTP/1.1", upstream: "fastcgi://172.20.0.6:9000", host: "localhost:8787"
+2022/03/01 14:09:06 [error] 32#32: *23 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.20.0.1, server: magento243.dev, request: "GET /admin HTTP/1.1", upstream: "fastcgi://172.20.0.6:9000", host: "localhost:8787"
+2022/03/01 14:09:57 [error] 32#32: *24 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.20.0.1, server: magento243.dev, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.20.0.6:9000", host: "localhost:8787", referrer: "http://localhost:8787/"
+2022/03/01 14:10:31 [error] 32#32: *23 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.20.0.1, server: magento243.dev, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.20.0.6:9000", host: "localhost:8787", referrer: "http://localhost:8787/admin"
+2022/03/01 14:16:02 [error] 32#32: *39 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.20.0.1, server: magento243.dev, request: "GET /customer/account/create/ HTTP/1.1", upstream: "fastcgi://172.20.0.6:9000", host: "localhost:8787", referrer: "http://localhost:8787/"
+2022/03/01 14:20:02 [error] 32#32: *96 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.20.0.1, server: magento243.dev, request: "GET /admin/admin/dashboard/index/key/94ba143e3e6ce851b2fc74fa28bdf82f3ad6050ed66728bb6a0cceddedc4d086/ HTTP/1.1", upstream: "fastcgi://172.20.0.6:9000", host: "localhost:8787", referrer: "http://localhost:8787/admin"
+2022/03/01 14:21:03 [error] 32#32: *96 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.20.0.1, server: magento243.dev, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.20.0.6:9000", host: "localhost:8787", referrer: "http://localhost:8787/admin/admin/dashboard/index/key/94ba143e3e6ce851b2fc74fa28bdf82f3ad6050ed66728bb6a0cceddedc4d086/"
+2022/03/01 14:21:44 [error] 32#32: *121 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.20.0.1, server: magento243.dev, request: "GET /admin/admin/dashboard/index/key/94ba143e3e6ce851b2fc74fa28bdf82f3ad6050ed66728bb6a0cceddedc4d086/ HTTP/1.1", upstream: "fastcgi://172.20.0.6:9000", host: "localhost:8787", referrer: "http://localhost:8787/admin"
+2022/03/01 14:22:54 [error] 32#32: *96 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.20.0.1, server: magento243.dev, request: "GET /admin/admin/dashboard/index/key/94ba143e3e6ce851b2fc74fa28bdf82f3ad6050ed66728bb6a0cceddedc4d086/ HTTP/1.1", upstream: "fastcgi://172.20.0.6:9000", host: "localhost:8787", referrer: "http://localhost:8787/admin"

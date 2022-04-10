@@ -1,0 +1,126 @@
+version: '3'
+
+networks:
+  backend:
+    driver: "bridge"
+
+services:
+#   web:
+#     build: ${SERVER_PATH}/${SERVER}
+#     working_dir: /var/www/html
+#     volumes:
+#       - ${SERVER_PATH}/${SERVER}/logs:/var/log/${SERVER}/
+#       - ${SOURCE_PATH}:/var/www/html
+#     ports:
+#       - '8787:80'
+#       # - '443:443'
+#     restart: always
+#     depends_on:
+#       - php_fpm
+#       - mysql
+#     networks:
+#       - backend
+  pgsql:
+    build: ${DB_PATH}/postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      PGDATA: /var/lib/postgresql/data
+    ports:
+      - '${POSTGRES_PORT}:5432'
+    volumes:
+      - ${DB_PATH}/postgres/data:/var/lib/postgresql/data
+    restart: always
+    networks:
+      - backend
+#   mysql:
+#     build: ${DB_PATH}/mysql
+#     environment:
+#       MYSQL_DATABASE: 'magento243'
+#       MYSQL_USER: 'magento'
+#       MYSQL_PASSWORD: '123456'
+#       MYSQL_ROOT_PASSWORD: '123456'
+#     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+#     volumes:
+#       - ${DB_PATH}/mysql/initdb:/docker-entrypoint-initdb.d
+#       - ${DB_PATH}/mysql/data:/var/lib/mysql
+#     expose:
+#       - '33066'
+#     ports:
+#       - '33066:33066'
+#     restart: always
+#     networks:
+#       - backend
+#   adminer:
+#     build: ${SERVER_PATH}/adminer
+#     environment:
+#       ADMINER_DEFAULT_SERVER: mysql
+#       ADMINER_DESIGN: "123456"
+#     volumes:
+#       - ${SERVER_PATH}/adminer/conf/php-custom.ini:/usr/local/etc/php/conf.d/php-custom.ini
+#     expose:
+#       - '8080'
+#     ports:
+#       - '8081:8080'
+#     depends_on:
+#       - mysql
+#     networks:
+#       - backend
+#   php_fpm:
+#     build: ${SERVER_PATH}/php-fpm
+#     working_dir: /var/www/html
+#     volumes:
+#       - ${SOURCE_PATH}:/var/www/html
+#     ports:
+#       - '9000:9000'
+#     restart: always
+#     depends_on:
+#       - mysqld
+#     networks:
+#       - backend
+  redis:
+    build: ${CACHE_PATH}/redis
+    volumes:
+      - ${CACHE_PATH}/redis/data:/data
+    command: redis-server --save 20 1 --loglevel warning --requirepass 123@haPHAT
+    ports:
+      - '63790:6379'
+    restart: always
+    networks:
+      - backend
+#   elasticsearch:
+#     build: ${CACHE_PATH}/elasticsearch
+#     environment:
+#       - bootstrap.memory_lock=true
+#       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+#       - xpack.security.enabled=false
+#       - "discovery.type=single-node"
+#     volumes:
+#       - ${CACHE_PATH}/elasticsearch/data:/usr/share/elasticsearch/data
+#     ports:
+#       - '9201:9200'
+#       - '9301:9300'
+#     ulimits:
+#       memlock:
+#         soft: -1
+#         hard: -1
+#     restart: always
+#     networks:
+#       - backend
+  mailer:
+    build: ${MAILER_PATH}/${MAILER}
+    user: root # Needed if using maildir
+    environment:
+      MH_STORAGE: maildir
+      MH_MAILDIR_PATH: /var/data/${MAILER}
+    volumes:
+      - ${MAILER_PATH}/${MAILER}/data:/var/data/${MAILER}
+    expose:
+      - "1025" # SMTP Server to send mail
+      - "8025" # HTTP Server to check mail
+    ports:
+      - "8022:8025"
+    restart: always
+    networks:
+      - backend
