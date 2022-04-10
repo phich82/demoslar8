@@ -1,11 +1,15 @@
 <?php
 
 use App\Models\Order;
-use App\Events\ChatPresenceChannel;
+use App\Events\LoginSubscriber;
+use App\Events\LogoutSubscriber;
+use App\Events\LocalNotification;
 use App\Events\OrderNormalChannel;
+use App\Events\ChatPresenceChannel;
 use App\Events\OrderPrivateChannel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Events\LocalNotificationQueue;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Cache\RateLimiting\Limit;
 use App\Http\Middleware\VerifyPermission;
@@ -47,6 +51,26 @@ Route::get('/broadcast-presence', function () {
     $message->room_id = 1;
     ChatPresenceChannel::dispatch($message);
     echo 'Chat user joined.';
+});
+
+Route::get('/event', function () {
+    $message = new stdClass();
+    $message->room_id = 1;
+    LocalNotification::dispatch($message);
+    echo 'Local notification sent.';
+});
+Route::get('/event-queue', function () {
+    $message = new stdClass();
+    $message->room_id = 1;
+    LocalNotificationQueue::dispatch($message);
+    echo 'Local notification (queue) sent.';
+});
+Route::get('/event-subscribe', function () {
+    $message = new stdClass();
+    $message->room_id = 1;
+    LoginSubscriber::dispatch($message);
+    LogoutSubscriber::dispatch($message);
+    echo 'Subscribed successfully.';
 });
 
 Route::get('/module-view', function () {

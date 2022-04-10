@@ -2,10 +2,17 @@
 
 namespace App\Providers;
 
+use Throwable;
+use App\Events\LocalNotification;
+use App\Listeners\UserSubscriber;
+use Illuminate\Support\Facades\Event;
+use App\Events\LocalNotificationQueue;
 use Illuminate\Auth\Events\Registered;
+use App\Listeners\SendLocalNotification;
+use function Illuminate\Events\queueable;
+use App\Listeners\SendLocalNotificationQueue;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -21,12 +28,35 @@ class EventServiceProvider extends ServiceProvider
     ];
 
     /**
+     * The subscriber classes to register.
+     *
+     * @var array
+     */
+    protected $subscribe = [
+        UserSubscriber::class,
+    ];
+
+    /**
      * Register any events for your application.
      *
      * @return void
      */
     public function boot()
     {
-        //
+        // Registering Events
+        Event::listen(LocalNotification::class, [SendLocalNotification::class, 'handle']);
+        Event::listen(LocalNotificationQueue::class, [SendLocalNotificationQueue::class, 'handle']);
+
+        // Event::listen(queueable(function (LocalNotification $event) {
+        //     //
+        // })->catch(function (LocalNotification $event, Throwable $e) {
+        //     // The queued listener failed...
+        // }));
+        // Event::listen(queueable(function (LocalNotification $event) {
+        //     //
+        // })->onConnection('redis')->onQueue('podcasts')->delay(now()->addSeconds(10)));
+        // Event::listen('event.*', function ($eventName, array $data) {
+        //     //
+        // });
     }
 }
