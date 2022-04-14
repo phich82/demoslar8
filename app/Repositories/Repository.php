@@ -40,6 +40,49 @@ abstract class Repository
     }
 
     /**
+     * Get only one record
+     *
+     * @param  int $id
+     * @return null|object
+     */
+    public function getOne($id)
+    {
+        $result = $this->model->find($id);
+        return $result ? json_decode($result->toJson()) : null;
+    }
+
+    /**
+     * Get records by conditions
+     *
+     * @param  array $conditions [
+     *  'field1[:operator]' => $value1, // 'id:>' => 100 or 'id:<=' or 'id:>='
+     *  'field2' => $value2,            // 'role_id' => 2
+     * ]
+     * @return array
+     */
+    public function getBy(array $conditions = [])
+    {
+        if (empty($conditions)) {
+            return [];
+        }
+
+        $model = $this->model;
+        foreach ($conditions as $field => $value) {
+            if (is_array($value)) {
+                $model = $model->whereIn($field, $value);
+            } else {
+                // Check operator whether it exists in field?
+                $operators = explode(':', $field);
+                $field = $operators[0];
+                $operator = count($operators) > 1 ? $operators[1] : '=';
+
+                $model = $model->where($field, $operator, $value);
+            }
+        }
+        return $model->get();
+    }
+
+    /**
      * Insert many rows at once time
      *
      * @param  array $params
@@ -60,7 +103,7 @@ abstract class Repository
      * @param  array $params
      * @return bool
      */
-    public function updateByConditions(array $conditions, array $params)
+    public function updateBy(array $conditions, array $params)
     {
         if (empty($conditions) || empty($params)) {
             return false;
@@ -79,7 +122,7 @@ abstract class Repository
      * @param  array $conditions
      * @return bool
      */
-    public function deleteByConditions($conditions = [])
+    public function deleteBy($conditions = [])
     {
         if (empty($conditions)) {
             return false;

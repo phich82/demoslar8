@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Order;
+use App\Mail\NewOrder;
+use Illuminate\Mail\Mailer;
 use App\Events\LoginSubscriber;
 use App\Events\LogoutSubscriber;
 use App\Events\LocalNotification;
@@ -8,11 +10,19 @@ use App\Events\OrderNormalChannel;
 use App\Events\ChatPresenceChannel;
 use App\Events\OrderPrivateChannel;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
+use App\Services\Facades\FileService;
+use App\Services\Facades\HttpService;
 use Illuminate\Support\Facades\Route;
+// use App\Services\HttpService;
 use App\Events\LocalNotificationQueue;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Cache\RateLimiting\Limit;
 use App\Http\Middleware\VerifyPermission;
+use App\Mail\OrderShipped;
+use App\Services\DBService;
+use App\Services\UserService;
 use Illuminate\Support\Facades\RateLimiter;
 
 /*
@@ -71,6 +81,80 @@ Route::get('/event-subscribe', function () {
     LoginSubscriber::dispatch($message);
     LogoutSubscriber::dispatch($message);
     echo 'Subscribed successfully.';
+});
+
+Route::get('/file', function () {
+    // FileService::save('test.txt', 'Hello world.');
+    // FileService::copy('test.txt', 'test/newtest.txt');
+    // return FileService::download('test.txt', 'download.txt');
+    echo 'Save file successfully.';
+});
+
+Route::get('/http', function () {
+    dd(
+        HttpService::get('todos/1'),
+        HttpService::get('xxxxxx'),
+        HttpService::withHttp(Http::google())->get('users'),
+    );
+});
+
+Route::get('/sendmail', function () {
+    // Only send mail with authorized emails with mailgun (on app.mailgun.com, add more authorized emails)
+    // Mail::raw('Hello you', function ($message) {
+    //     $message->to('jhphich82@gmail.com');
+    //     $message->subject('Test mailgun.');
+    // });
+    // dd(config('services.mailgun'));
+    $order = Order::findOrFail(1);
+    // Preview email template before sending mail
+    // return (new NewOrder($order))->render();
+    // return (new OrderShipped($order))->render();
+    Mail::to('jhphich82@gmail.com')->send(new OrderShipped($order));
+    dd('Sent.');
+});
+
+Route::get('/pagination', function (UserService $userService) {
+    $sql = "
+        --SELECT
+        --    u.*
+        --    ,o.items
+        FROM users AS u
+        LEFT JOIN orders AS o ON (u.id = o.user_id)
+        WHERE
+            u.email LIKE :email
+    ";
+    $sql2 = "
+        SELECT
+            u.*
+            ,o.items
+        FROM users AS u
+        LEFT JOIN orders AS o ON (u.id = o.user_id)
+        WHERE
+            u.email LIKE :email
+    ";
+    $sql3 = "
+        SELECT
+            u.*
+            ,o.items
+        FROM users AS u
+        LEFT JOIN orders AS o ON (u.id = o.user_id)
+        --WHERE
+            --u.email LIKE :email
+    ";
+    $prepareBinding = [
+        'email' => '%e_'
+    ];
+    // dd(
+    //     DBService::getPaginationTotal(['', $sql], $prepareBinding),
+    //     // DBService::select($sql2, $prepareBinding),
+    //     $userService->getBy([
+    //         'id' => 9000
+    //     ])->toArray(),
+    //     $userService->getOne(1),
+    //     DBService::paginate($sql3)->total()
+    // );
+
+    return view('test', ['pagination' => DBService::paginate($sql3)]);
 });
 
 Route::get('/module-view', function () {

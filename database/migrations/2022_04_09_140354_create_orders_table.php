@@ -20,6 +20,7 @@ class CreateOrdersTable extends Migration
             $table->decimal('vat')->default(0);
             $table->decimal('subtotal')->default(0);
             $table->decimal('total')->default(0);
+            $table->text('track_log')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

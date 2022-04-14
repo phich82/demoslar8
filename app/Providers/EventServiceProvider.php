@@ -11,6 +11,7 @@ use Illuminate\Auth\Events\Registered;
 use App\Listeners\SendLocalNotification;
 use function Illuminate\Events\queueable;
 use App\Listeners\SendLocalNotificationQueue;
+use App\Services\ScheduleService;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -25,7 +26,7 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-    ];
+    ] + ScheduleService::SCHEDULE_TASK_HOOKS;
 
     /**
      * The subscriber classes to register.

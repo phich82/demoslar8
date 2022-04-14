@@ -12,5 +12,14 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+    .vue()
     .sass('resources/sass/app.scss', 'public/css')
+    .copyDirectory('resources/images', 'public/images')
     .sourceMaps();
+
+if (mix.inProduction()) {
+    mix.version();
+}
+
+// Disable notifications after built
+// mix.disableNotifications();

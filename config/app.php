@@ -175,7 +175,18 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        // Set module name for view, configuration, language,...
         App\Providers\ModuleServiceProvider::class,
+        // New storage drivers
+        App\Providers\DropboxFileSystemServiceProvider::class,
+        App\Providers\FTPFileSystemServiceProvider::class,
+        App\Providers\PredisFileSystemServiceProvider::class,
+        App\Providers\SFTPFileSystemServiceProvider::class,
+        App\Providers\StashFileSystemServiceProvider::class,
+        // Directives
+        App\Providers\DirectivesServiceProvider::class,
+        // Register common events
+        App\Providers\RegisterCommonEventsServiceProvider::class,
 
     ],
 
