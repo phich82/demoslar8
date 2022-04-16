@@ -44,7 +44,7 @@ class Validator
                 $messages = $args[2];
                 break;
             default:
-            $data = $args[0];
+                $data = $args[0];
                 $rules = $args[1];
                 $messages = $args[2];
                 $customAttributes = $args[3];

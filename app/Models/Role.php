@@ -24,7 +24,14 @@ class Role extends Model
      * @var array
      */
     protected $fillable = [
-        //
+        'name',
+        'code',
+        'description',
+        'permissions',
+        'track_log',
+        'created_at',
+        'updated_at',
+        'deleted_at',
     ];
 
     /**
@@ -32,6 +39,10 @@ class Role extends Model
      */
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
+
+
+
+
 
     /**
      * The model's default values for attributes.
@@ -69,10 +80,10 @@ class Role extends Model
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return void
      */
-    public function scopeActive($query)
-    {
-        $query->where('active', 1);
-    }
+    // public function scopeActive($query)
+    // {
+    //     $query->where('active', 1);
+    // }
 
     /**
      * @Dynamic Scope
@@ -85,8 +96,8 @@ class Role extends Model
      * @param  mixed  $type
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeOfType($query, $type)
-    {
-        return $query->where('type', $type);
-    }
+    // public function scopeOfType($query, $type)
+    // {
+    //     return $query->where('type', $type);
+    // }
 }

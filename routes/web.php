@@ -2,27 +2,31 @@
 
 use App\Models\Order;
 use App\Mail\NewOrder;
+use App\Mail\OrderShipped;
+use App\Services\DBService;
 use Illuminate\Mail\Mailer;
+use App\Services\UserService;
 use App\Events\LoginSubscriber;
 use App\Events\LogoutSubscriber;
 use App\Events\LocalNotification;
 use App\Events\OrderNormalChannel;
 use App\Events\ChatPresenceChannel;
 use App\Events\OrderPrivateChannel;
+use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+// use App\Services\HttpService;
 use Illuminate\Support\Facades\Mail;
 use App\Services\Facades\FileService;
 use App\Services\Facades\HttpService;
 use Illuminate\Support\Facades\Route;
-// use App\Services\HttpService;
 use App\Events\LocalNotificationQueue;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Cache\RateLimiting\Limit;
 use App\Http\Middleware\VerifyPermission;
-use App\Mail\OrderShipped;
-use App\Services\DBService;
-use App\Services\UserService;
+use App\Repositories\RoleRepository;
+use App\Services\AuthService;
+use App\Services\Core;
 use Illuminate\Support\Facades\RateLimiter;
 
 /*
@@ -114,6 +118,7 @@ Route::get('/sendmail', function () {
 });
 
 Route::get('/pagination', function (UserService $userService) {
+    // dd(UserRepository::getTable(), RoleRepository::getTable());
     $sql = "
         --SELECT
         --    u.*
@@ -155,6 +160,52 @@ Route::get('/pagination', function (UserService $userService) {
     // );
 
     return view('test', ['pagination' => DBService::paginate($sql3)]);
+});
+
+Route::get('/permission', function () {
+    dd(
+        Core::auth(),
+        AuthService::auth(),
+    );
+});
+
+Route::get('versioning', function () {
+    // Get basic information from config file
+    $config = config('version.api');
+    if (empty($config)) {
+        throw new Exception("Missing `config/version.php` file or `api` key.");
+    }
+    $middleware = $config['middleware'] ?? 'api';
+    $versionPattern = $config['pattern'] ?? '^V\d+$';
+
+    // Get api versions from scaning api directory
+    $versions = array_reduce(scandir($config['root_path']) ?: [], function ($carry, $name) use ($versionPattern) {
+        if (preg_match("#{$versionPattern}#", $name)) {
+            $carry[] = $name;
+        }
+        return $carry;
+    }, []);
+
+    // Setup routes for APIs by versions
+    foreach ($versions as $version) {
+        $version = trim($version);
+        $prefix = trim($config['prefix'] ?? 'api', '/\\')."/".strtolower($version);
+        $namespace = $config['controller_namespace'] ?? "App\\Api\\{$version}\\Controllers";
+        $routePath = $config['route_path'] ?? base_path("routes".DIRECTORY_SEPARATOR."api_".strtolower($version).".php"); // routes/api_v1.php
+
+        if (is_callable($namespace)) {
+            $namespace = $namespace($version);
+        }
+
+        if (is_callable($routePath)) {
+            $routePath = $routePath($version);
+        }
+
+        $out['prefix'] = $prefix;
+        $out['namespace'] = $namespace;
+        $out['route_path'] = $routePath;
+    }
+    dd($out);
 });
 
 Route::get('/module-view', function () {

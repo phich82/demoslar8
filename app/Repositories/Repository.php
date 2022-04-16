@@ -40,6 +40,17 @@ abstract class Repository
     }
 
     /**
+     * Get table name of model directly from repository
+     *
+     * @return string
+     */
+    public static function getTable()
+    {
+        $Model = static::model();
+        return with(new $Model)->getTable();
+    }
+
+    /**
      * Get only one record
      *
      * @param  int $id

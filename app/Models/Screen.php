@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Order extends Model
+class Screen extends Model
 {
     use HasFactory, SoftDeletes;
 
@@ -15,19 +15,18 @@ class Order extends Model
      *
      * @var string
      */
-    protected $table = 'orders';
+    protected $table = 'screens';
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var array
      */
     protected $fillable = [
-        'items',
-        'vat',
-        'subtotal',
-        'total',
-        'user_id',
+        'name',
+        'route',
+        'parent',
+        'description',
         'track_log',
         'created_at',
         'updated_at',

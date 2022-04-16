@@ -6,6 +6,7 @@ class Constant
     # Prefix API
     const PREFIX_API = 'api';
     const PREFIX_WEB_ADMIN = 'admin';
+    const MIDDLEWARE_API = 'api';
 
     # Module Name for Admin
     const GUARD_ADMIN = 'admin';
@@ -26,4 +27,10 @@ class Constant
     const API_RESPONSE_CODE = 'code';
     const API_RESPONSE_MESSAGE = 'message';
     const API_RESPONSE_DEFAULT_ERROR_DATA = null;
+
+    // Validation
+    const WEB_REQUEST_PATH_KEY = 'web_request_path';
+    const API_REQUEST_PATH_KEY = 'api_request_path';
+    const API_VERSION_PATTERN = '#^(v|ver|version)\d+$#';
+    const API_VERSION_FOLDER_PATTERN = '#^(V|Ver|Version)\d+$#';
 }

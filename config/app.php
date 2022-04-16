@@ -187,6 +187,8 @@ return [
         App\Providers\DirectivesServiceProvider::class,
         // Register common events
         App\Providers\RegisterCommonEventsServiceProvider::class,
+        // Versioning APIs
+        App\Providers\VersioningApiServiceProvider::class,
 
     ],
 

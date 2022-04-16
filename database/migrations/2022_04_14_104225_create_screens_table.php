@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRolePermissionsTable extends Migration
+class CreateScreensTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateRolePermissionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('role_permissions', function (Blueprint $table) {
+        Schema::create('screens', function (Blueprint $table) {
             $table->id();
-            $table->integer('role_id');
-            $table->integer('permission_id');
+            $table->string('name')->unique();
+            $table->string('route')->unique();
+            $table->integer('parent')->nullable();
+            $table->string('description')->nullable();
             $table->text('track_log')->nullable();
             $table->timestamps();
             $table->softDeletes();
@@ -30,6 +32,6 @@ class CreateRolePermissionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('role_permissions');
+        Schema::dropIfExists('screens');
     }
 }

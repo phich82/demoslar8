@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Binding\Binding;
+use App\Validation\RuleExtension;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -15,7 +17,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // Binding
+        Binding::start($this->app);
     }
 
     /**
@@ -34,5 +37,8 @@ class AppServiceProvider extends ServiceProvider
             $config = config('api.google');
             return Http::withHeaders($config['headers'])->baseUrl($config['base_url']);
         });
+
+        // Register more rules defined by user
+        RuleExtension::register();
     }
 }
