@@ -29,8 +29,6 @@ class Constant
     const API_RESPONSE_DEFAULT_ERROR_DATA = null;
 
     // Validation
-    const WEB_REQUEST_PATH_KEY = 'web_request_path';
-    const API_REQUEST_PATH_KEY = 'api_request_path';
     const API_VERSION_PATTERN = '#^(v|ver|version)\d+$#';
     const API_VERSION_FOLDER_PATTERN = '#^(V|Ver|Version)\d+$#';
 }
