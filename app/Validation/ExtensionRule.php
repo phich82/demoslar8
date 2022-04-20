@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
  * Define more validation rules for application (global)
  * @method static void register()
  */
-class RuleExtension
+class ExtensionRule
 {
     use Mixin;
 
