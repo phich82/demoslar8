@@ -11,6 +11,6 @@ class TestController extends Controller
 
     public function index()
     {
-        return $this->responseSuccess(['api' => "I'm from v2 api."]);
+        return $this->responseSuccess(['api' => "I'm a test from v2 api."]);
     }
 }

@@ -39,9 +39,11 @@ class VersioningApiServiceProvider extends ServiceProvider
     private function versioningApiRoutes()
     {
         // Get basic information from config file
-        $config = config('version.api');
+        $config = read('app.Config.version::api');// config('version.api');
+
         if (empty($config)) {
-            throw new Exception("Missing `config/version.php` file or `api` key.");
+            // throw new Exception("Missing `config/version.php` file or `api` key.");
+            throw new Exception("Missing `app/Config/version.php` file or `api` key.");
         }
         $middleware = $config['middleware'] ?? 'api';
         $versionPattern = $config['pattern'] ?? '#^(V|Ver|Version)\d+$#';

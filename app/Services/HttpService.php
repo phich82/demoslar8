@@ -43,6 +43,19 @@ class HttpService
     }
 
     /**
+     * Set base url
+     *
+     * @param  string $baseUrl
+     * @return \HttpService
+     */
+    public function baseUrl($baseUrl = '')
+    {
+        $this->http->baseUrl($baseUrl);
+
+        return $this;
+    }
+
+    /**
      * Set new http instance
      *
      * @param  mixed $http

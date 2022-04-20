@@ -6,7 +6,8 @@ use App\Traits\Mixin;
 use Illuminate\Support\Facades\Validator;
 
 /**
- * Define more rules for validation
+ * Define more validation rules for application (global)
+ * @method static void register()
  */
 class RuleExtension
 {

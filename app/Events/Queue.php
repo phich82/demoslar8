@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 
@@ -67,6 +68,6 @@ abstract class Queue
      */
     public function failed($event, $exception)
     {
-        dd('failed queue', $exception);
+        Log::error('failed queue', $exception);
     }
 }

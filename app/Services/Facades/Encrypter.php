@@ -2,27 +2,27 @@
 
 namespace App\Services\Facades;
 
-use App\Services\EncryterService;
+use App\Services\EncrypterService;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static \App\Services\EncryterService encrypt(string $payload)
- * @method static \App\Services\EncryterService decrypt(string $encrypted)
- * @method static \App\Services\EncryterService verifyKey(string $key)
+ * @method static \App\Services\EncrypterService encrypt(string $payload)
+ * @method static \App\Services\EncrypterService decrypt(string $encrypted)
+ * @method static \App\Services\EncrypterService verifyKey(string $key)
  *
- * @see \App\Services\EncryterService
+ * @see \App\Services\EncrypterService
  */
 class Encrypter extends Facade
 {
     /**
      * @override
      *
-     * getFacadeAccessor
+     * Get Facade Accessor
      *
      * @return string
      */
     protected static function getFacadeAccessor()
     {
-        return EncryterService::class;
+        return EncrypterService::class;
     }
 }

@@ -20,6 +20,7 @@ services:
 #       - mysql
 #     networks:
 #       - backend
+  ######################################### PGSQL #########################################
   pgsql:
     build: ${DB_PATH}/postgres
     environment:
@@ -79,6 +80,7 @@ services:
 #       - mysqld
 #     networks:
 #       - backend
+  ######################################### REDIS #########################################
   redis:
     build: ${CACHE_PATH}/redis
     volumes:
@@ -108,6 +110,7 @@ services:
 #     restart: always
 #     networks:
 #       - backend
+  ######################################### MAILER #########################################
   mailer:
     build: ${MAILER_PATH}/${MAILER}
     user: root # Needed if using maildir
@@ -124,14 +127,19 @@ services:
     restart: always
     networks:
       - backend
+  ######################################### RabbitMQ #########################################
   rabbitmq:
     build: ${SERVER_PATH}/queue/${QUEUE}
     environment:
       - RABBITMQ_DEFAULT_USER=myuser
       - RABBITMQ_DEFAULT_PASS=mypassword
+    volumes:
+      - "${SERVER_PATH}/queue/${QUEUE}/certs/rootCA.pem:/rootCA.pem:ro"
+      - "${SERVER_PATH}/queue/${QUEUE}/certs/rootCA.key:/rootCA.key:ro"
+      # - ${SERVER_PATH}/queue/${QUEUE}/conf/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
     ports:
       # AMQP protocol port
-      - '5672:5672'
+      - '5671:5672'
       # HTTP management UI
       - '15672:15672'
     restart: always

@@ -2,6 +2,11 @@
 
 namespace App\Traits;
 
+use Exception;
+
+/**
+ * For creating a facade
+ */
 trait Mixin
 {
     /**
@@ -13,7 +18,10 @@ trait Mixin
      */
     public function __call($method, $arguments = [])
     {
-        return $this->$method(...$arguments);
+        if (method_exists($this, $method)) {
+            return $this->$method(...$arguments);
+        }
+        throw new Exception("[Mixin] Method [$method] not exist.");
     }
 
     /**

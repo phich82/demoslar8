@@ -17,6 +17,7 @@
         "league/flysystem-aws-s3-v3": "^1",
         "league/flysystem-cached-adapter": "^1.1",
         "league/flysystem-sftp": "^1.1",
+        "php-amqplib/php-amqplib": "^3.0",
         "predis/predis": "1.1.10",
         "spatie/flysystem-dropbox": "1.2.3",
         "tedivm/stash": "^0.17",

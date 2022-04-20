@@ -44,6 +44,9 @@ class EncrypterCrypt implements Encrypter
      */
     public function format($payload = null)
     {
+        if (!is_string($payload)) {
+            $payload = json_encode($payload);
+        }
         return "{$this->secret}.{$payload}";
     }
 }

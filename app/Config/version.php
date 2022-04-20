@@ -2,6 +2,11 @@
 
 use App\Helpers\Constant;
 
+/**
+ * This is a place only for storing values of keys are closure functions.
+ *
+ * @important Not could using closure function in configuration files in laravel.
+ */
 return [
     'api' => [
         'prefix' => Constant::PREFIX_API,
@@ -29,8 +34,10 @@ return [
             );
         },
         'mapping_request_append_paths' => [
-            '<route_pattern>' => '<append_path>',
-            // '#^api/v2/test*#' => 'Order/Ahamove'
+            /******************************************
+             *  '<route_pattern>' => '<append_path>'  *
+             ******************************************/
+            '#^api/v2/test*#' => 'Order/Ahamove'
         ],
     ],
     'web' => [
@@ -49,7 +56,9 @@ return [
             );
         },
         'mapping_request_append_paths' => [
-            '<route_pattern>' => '<append_path>',
+            /******************************************
+             *  '<route_pattern>' => '<append_path>'  *
+             *****************************************/
         ],
     ],
 ];

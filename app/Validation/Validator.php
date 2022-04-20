@@ -161,9 +161,10 @@ class Validator
      */
     private static function _resolveRequestPath(Request $request = null)
     {
-        $config = config('version');
+        $config = read('app.Config.version');// config('version');
         if (empty($config)) {
-            throw new Exception("Missing file `config/version.php`");
+            // throw new Exception("Missing file `config/version.php`");
+            throw new Exception("Missing file `app/Config/version.php`");
         }
         if (!isset($config['api'])) {
             $config['api'] = self::_defaultConfig('api');

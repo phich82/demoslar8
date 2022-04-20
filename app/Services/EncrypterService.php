@@ -4,8 +4,7 @@ namespace App\Services;
 
 use App\Services\Contracts\Encrypter;
 
-
-class EncryterService
+class EncrypterService
 {
     /**
      * @var \App\Contracts\Encrypter

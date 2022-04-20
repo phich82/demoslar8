@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Traits\AutoValidation;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use App\Http\Controllers\WebController;
 
-class Controller extends BaseController
+class Controller extends WebController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-    // Auto validation
-    // use AuthorizesRequests, DispatchesJobs, ValidatesRequests, AutoValidation;
+    /**
+     * @override For AutoValidation Class
+     *
+     * Get validation file path & controller namespace
+     *
+     * @var string
+     */
+    protected $validation_file_path = 'app.Http.Validation.validation';
+    // protected $validation_controller_class = Controller::class;
 }

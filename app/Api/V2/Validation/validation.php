@@ -2,10 +2,13 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use App\Api\V2\Controllers\DemoController;
 use App\Api\V2\Controllers\TestController;
 
 /**
- * If keys contain namespace, output must not contain `namespace` key or `namespace` key as true or `namespace` as a string
+ * If the keys of rules contain namespace, the output must not contain `namespace` key
+ * or `namespace` key as true or `namespace` as a string.
+ *
  * - Output:
  *   => ['rules' => {rules}] -> All keys of `rules` array must contain namespace. This is default.
  *   => ['rules' => {rules}, 'namespace' => true] -> All keys of `rules` array must contain namespace.
@@ -13,56 +16,29 @@ use App\Api\V2\Controllers\TestController;
  *   => ['rules' => {rules}, 'namespace' => false] -> All keys of `rules` array must NOT contain namespace.
  */
 $rules = [
-    'UserController' => [
-        'register' => [
-            'name'     => 'required|max:255',
-            'email'    => ['required', 'email', 'max:255', Rule::unique('users')->where('status', 1)],
-            'password' => 'required|min:6|confirmed',
-            'gender'   => 'required|in:male,female',
-            'birthday' => 'required|date_format:Y-n-j',
-        ],
-        'update' => function ($request) {
-            return [
-                'name'     => 'required|max:255',
-                'email'    => 'required|email|max:255|unique:users,email,'.$request->user()->id,
-                'gender'   => 'required|in:male,female',
-                'birthday' => 'required|date_format:Y-n-j',
-            ];
-        }
-    ],
-    'ResetPasswordController' => [
-        'getResetMethods' => [
-            'keyword' => 'required',
-        ],
-        'sendToken' => [
-            'method'  => 'required|in:mail,phone_number',
-            'keyword' => 'required',
-        ],
-        'reset' => [
-            'token'    => 'required',
-            'password' => 'required|min:6|confirmed',
-        ],
-    ],
-    'Student\LessonsController' => [
-        'create' => [
-            'date'        => 'required|date_format:Y-n-j',
-            'time'        => 'required|date_format:H:i',
-            'duration'    => 'required',
-            'teacher_id'  => 'required',
-            'language_id' => 'required',
-        ],
-    ],
-
     TestController::class => [
-        // array|Closure
+
+        /*************************************************************************************
+         * '<key: methods(actions)_of_controller>' => '<value:                               *
+         *    Closure|                                                                       *
+         *    array<[                                                                        *
+         *        _data_:array|Closure,       // input data for validation                   *
+         *        _rules_:array|Closure,      // rules for validation (this key is required) *
+         *        _messages_:array|Closure,   // custom error messages                       *
+         *        _attributes_:array|Closure  // custom attributes                           *
+         *    ]>                                                                             *
+         * >'                                                                                *
+         *************************************************************************************/
+
+        // action (method) as array (Closure)
         'index' => [
-            // array|Closure
+            // key as Closure (array)
             '_data_' => function (Request $request) {
                 return [
 
                 ];
             },
-            // array|Closure
+            // key as array (Closure)
             '_rules_' => [
                 'name'     => 'required|max:255',
                 'email'    => ['required', 'email', 'max:255', Rule::unique('users')->where('status', 1)],
@@ -70,16 +46,19 @@ $rules = [
                 'gender'   => 'required|in:male,female',
                 'birthday' => 'required|date_format:Y-n-j',
             ],
-            // array|Closure
+            // key as array (Closure)
             '_message_' => [
 
             ],
+            // key as array (Closure)
             '_attributes_' => [
 
             ],
         ],
+        // action as Closure (array)
         'update' => function (Request $request) {
-            // Without keys (_data_, _rules_, _messages_, _attributes_)
+            // Without all keys (_data_, _rules_, _messages_, _attributes_).
+            // In this case, it is considered as `rules`,
             return [
                 'name'     => 'required|max:255',
                 'email'    => 'required|email|max:255|unique:users,email,'.$request->user()->id,
@@ -88,10 +67,18 @@ $rules = [
             ];
         }
     ],
-    'DemoController' => read('app.Api.V2.Validation.rules.DemoControllerRules'),
+    DemoController::class => read('app.Api.V2.Validation.rules.DemoControllerRules'),
 ];
 
 return [
     'rules' => $rules,
-    // 'namespace' => 'App\Api\V2\Controllers', // bool<true,false>|string. Default: always has namespace
+    /**
+     * The `namespace` key can be a boolean or string or missing
+     *
+     * - If it is missing, all keys of rule must contain namespace. This is default.
+     * - If it is `true`, all keys of rule must contain namespace.
+     * - If it is `false`, all keys of rule must not contain namespace.
+     * - If it is a string, all keys of rule must not contain namespace.
+     */
+    // 'namespace' => 'App\Api\V2\Controllers',
 ];

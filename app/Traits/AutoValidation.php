@@ -3,9 +3,7 @@
 namespace App\Traits;
 
 use Closure;
-use Exception;
 use App\Traits\ApiResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 trait AutoValidation
@@ -116,7 +114,7 @@ trait AutoValidation
     /**
      * Parse rules
      *
-     * @param  array|\Closure $rules
+     * @param  array|\Closure $rulesValidation
      * @return array
      */
     private function _parseRules($rulesValidation)

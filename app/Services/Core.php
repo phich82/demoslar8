@@ -2,8 +2,16 @@
 
 namespace App\Services;
 
+use App\Services\Session;
+use App\Services\DBService;
+use App\Services\FileService;
+use App\Services\HttpService;
+use App\Services\EncrypterService;
 use Illuminate\Contracts\Auth\Factory as AuthFactory;
 
+/**
+ * This class contains core services of apllication.
+ */
 class Core
 {
     /**
@@ -18,5 +26,62 @@ class Core
             return app(AuthFactory::class);
         }
         return app(AuthFactory::class)->guard($guard);
+    }
+
+    /**
+     * Get record list with pagigation (manually)
+     *
+     * @param  string $sql
+     * @param  array $binding
+     * @param  int $page
+     * @param  int $perPage
+     * @param  array $options
+     * @return array
+     */
+    public static function paginate($sql, array $binding = [], $page = null, $perPage = 10, $options = [])
+    {
+        return DBService::paginate($sql, $binding, $page, $perPage, $options);
+    }
+
+    /**
+     * Http
+     *
+     * @param  mixed $http
+     * @return \App\Services\HttpService
+     */
+    public static function http($http = null)
+    {
+        // return new HttpService($http);
+        return app()->make(HttpService::class, [$http]);
+    }
+
+    /**
+     * Encrypter
+     *
+     * @return \App\Services\EncrypterService
+     */
+    public static function encrypter()
+    {
+        return app()->make(EncrypterService::class);
+    }
+
+    /**
+     * Session
+     *
+     * @return \App\Services\Session
+     */
+    public static function session()
+    {
+        return app()->make(Session::class);
+    }
+
+    /**
+     * Storage
+     *
+     * @return \App\Services\FileService
+     */
+    public static function storage()
+    {
+        return app()->make(FileService::class);
     }
 }

@@ -1,32 +1,37 @@
 <?php
 
+use App\Models\User;
 use App\Models\Order;
 use App\Mail\NewOrder;
+use App\Services\Core;
 use App\Mail\OrderShipped;
 use App\Services\DBService;
 use Illuminate\Mail\Mailer;
+use Illuminate\Support\Str;
+use App\Services\AuthService;
 use App\Services\UserService;
 use App\Events\LoginSubscriber;
 use App\Events\LogoutSubscriber;
 use App\Events\LocalNotification;
 use App\Events\OrderNormalChannel;
 use App\Events\ChatPresenceChannel;
+// use App\Services\HttpService;
 use App\Events\OrderPrivateChannel;
+use App\Repositories\RoleRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
-// use App\Services\HttpService;
 use Illuminate\Support\Facades\Mail;
 use App\Services\Facades\FileService;
 use App\Services\Facades\HttpService;
+use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Facades\Route;
 use App\Events\LocalNotificationQueue;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Cache\RateLimiting\Limit;
 use App\Http\Middleware\VerifyPermission;
-use App\Repositories\RoleRepository;
-use App\Services\AuthService;
-use App\Services\Core;
+use App\Jobs\TestRabbitMQJob;
+use App\Services\Facades\Mailer as FacadesMailer;
 use Illuminate\Support\Facades\RateLimiter;
 
 /*
@@ -113,7 +118,8 @@ Route::get('/sendmail', function () {
     // Preview email template before sending mail
     // return (new NewOrder($order))->render();
     // return (new OrderShipped($order))->render();
-    Mail::to('jhphich82@gmail.com')->send(new OrderShipped($order));
+    // Mail::to('jhphich82@gmail.com')->send(new OrderShipped($order));
+    FacadesMailer::send('jhphich82@gmail.com', new OrderShipped($order));
     dd('Sent.');
 });
 
@@ -162,7 +168,8 @@ Route::get('/pagination', function (UserService $userService) {
     return view('test', ['pagination' => DBService::paginate($sql3)]);
 });
 
-Route::get('/permission', function () {
+Route::get('/permission', function (User $user) {
+    dd($user->isAdmin());
     dd(
         Core::auth(),
         AuthService::auth(),
@@ -171,9 +178,10 @@ Route::get('/permission', function () {
 
 Route::get('versioning', function () {
     // Get basic information from config file
-    $config = config('version.api');
+    $config = read('app.Config.version::api');// config('version.api');
     if (empty($config)) {
-        throw new Exception("Missing `config/version.php` file or `api` key.");
+        // throw new Exception("Missing `config/version.php` file or `api` key.");
+        throw new Exception("Missing `app/Config/version.php` file or `api` key.");
     }
     $middleware = $config['middleware'] ?? 'api';
     $versionPattern = $config['pattern'] ?? '^V\d+$';
@@ -206,6 +214,92 @@ Route::get('versioning', function () {
         $out['route_path'] = $routePath;
     }
     dd($out);
+});
+
+Route::get('core', function () {
+    Core::session()->set('test', 'Testing');
+    $encryptedStr = Core::encrypter()->encrypt(['test' => 1, 'last_time' => date('Y-m-d H:i:s')]);
+    dd(
+        Core::session()->get('test'),
+        // If the route is full path, we should baseUrl() method for reseting baseUrl of Http
+        Core::http()->baseUrl()->get('https://jsonplaceholder.typicode.com/users'),
+        Core::http()->get('/users/5'),
+        $encryptedStr,
+        Core::encrypter()->decrypt($encryptedStr)
+    );
+});
+
+Route::get('/pagination', function (UserService $userService) {
+    // dd(UserRepository::getTable(), RoleRepository::getTable());
+    $sql = "
+        --SELECT
+        --    u.*
+        --    ,o.items
+        FROM users AS u
+        LEFT JOIN orders AS o ON (u.id = o.user_id)
+        WHERE
+            u.email LIKE :email
+    ";
+    $sql2 = "
+        SELECT
+            u.*
+            ,o.items
+        FROM users AS u
+        LEFT JOIN orders AS o ON (u.id = o.user_id)
+        WHERE
+            u.email LIKE :email
+    ";
+    $sql3 = "
+        SELECT
+            u.*
+            ,o.items
+        FROM users AS u
+        LEFT JOIN orders AS o ON (u.id = o.user_id)
+        --WHERE
+            --u.email LIKE :email
+    ";
+    $prepareBinding = [
+        'email' => '%e_'
+    ];
+    // dd(
+    //     DBService::getPaginationTotal(['', $sql], $prepareBinding),
+    //     // DBService::select($sql2, $prepareBinding),
+    //     $userService->getBy([
+    //         'id' => 9000
+    //     ])->toArray(),
+    //     $userService->getOne(1),
+    //     DBService::paginate($sql3)->total()
+    // );
+
+    return view('test', ['pagination' => DBService::paginate($sql3)]);
+});
+
+Route::get('/queue', function () {
+    // Queue::purge();
+    // $queue = app()->make('queue');
+    // $connection = $queue->connection('rabbitmq');
+
+    // Queue::pushRaw($payload = Str::random());
+    // Queue::push(new TestRabbitMQJob());
+    // $job = Queue::pop();
+    TestRabbitMQJob::dispatch([
+        'processor' => 'App\\Services\\PushNotificationService'
+    ]);
+
+    echo 'Sent';
+
+    dd(
+        // $connection,
+        // $connection->getConnection(),
+        // $connection->getConnection()->isConnected(),
+        // $connection->getChannel()->is_open()
+        // Queue::size(),
+        // $job->attempts(),
+        // $job->payload(),
+        // $job->getJobId(),
+        // $job->delete(),
+        // Queue::size(),
+    );
 });
 
 Route::get('/module-view', function () {

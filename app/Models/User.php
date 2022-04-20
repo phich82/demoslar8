@@ -21,6 +21,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'password',
         'remember_token',
         'access_token',
         'track_log',
@@ -47,4 +48,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function isAdmin()
+    {
+        if (!auth()->check()) {
+            return false;
+        }
+        return !empty(
+            $this->newQuery()
+                 ->join('role_users', 'role_users.user_id', '=', 'users.id')
+                 ->join('roles', 'roles.id', '=', 'role_users.role_id')
+                 ->where('roles.code', 'admin')
+                 ->where('users.email', auth()->user()->email)
+                 ->first()
+        );
+    }
 }

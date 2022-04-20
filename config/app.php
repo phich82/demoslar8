@@ -189,6 +189,8 @@ return [
         App\Providers\RegisterCommonEventsServiceProvider::class,
         // Versioning APIs
         App\Providers\VersioningApiServiceProvider::class,
+        // RabbitMQ
+        App\Providers\RabbitMQServiceProvider::class,
 
     ],
 
