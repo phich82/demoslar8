@@ -59,12 +59,10 @@ Route::get('/broadcast-normal', function () {
     OrderNormalChannel::dispatch(1);
     echo 'Order status updated.';
 });
-
 Route::get('/broadcast-private', function () {
     OrderPrivateChannel::dispatch(1);
     echo 'Order status (private channel) updated.';
 });
-
 Route::get('/broadcast-presence', function () {
     $message = new stdClass();
     $message->room_id = 1;
@@ -178,17 +176,19 @@ Route::get('/permission', function (User $user) {
 
 Route::get('versioning', function () {
     // Get basic information from config file
-    $config = read('app.Config.version::api');// config('version.api');
+    // Get basic information from config file
+    $config = config('version.api');// read('app.Config.version:api');// config('version.api');
+
     if (empty($config)) {
         // throw new Exception("Missing `config/version.php` file or `api` key.");
         throw new Exception("Missing `app/Config/version.php` file or `api` key.");
     }
     $middleware = $config['middleware'] ?? 'api';
-    $versionPattern = $config['pattern'] ?? '^V\d+$';
+    $versionPattern = $config['pattern'] ?? '#^(V|Ver|Version)\d+$#';
 
     // Get api versions from scaning api directory
     $versions = array_reduce(scandir($config['root_path']) ?: [], function ($carry, $name) use ($versionPattern) {
-        if (preg_match("#{$versionPattern}#", $name)) {
+        if (preg_match("{$versionPattern}", $name)) {
             $carry[] = $name;
         }
         return $carry;
@@ -203,15 +203,30 @@ Route::get('versioning', function () {
 
         if (is_callable($namespace)) {
             $namespace = $namespace($version);
+        } else {
+            $versionNS = $version ? "\\{$version}" : "";
+            $namespace = str_replace(
+                ['{:version}', '{version}'],
+                [$versionNS, $versionNS],
+                $namespace
+            );
         }
 
         if (is_callable($routePath)) {
             $routePath = $routePath($version);
+        } else {
+            $versionPath = $version ? "/{$version}" : "";
+            $routePath = str_replace(
+                ['{:version}', '{version}'],
+                [$versionPath, $versionPath],
+                $routePath
+            );
         }
 
-        $out['prefix'] = $prefix;
-        $out['namespace'] = $namespace;
-        $out['route_path'] = $routePath;
+        $out[] = $prefix;
+        $out[] = $middleware;
+        $out[] = $namespace;
+        $out[] = $routePath;
     }
     dd($out);
 });
@@ -300,6 +315,10 @@ Route::get('/queue', function () {
         // $job->delete(),
         // Queue::size(),
     );
+});
+
+Route::get('/macros', function () {
+
 });
 
 Route::get('/module-view', function () {

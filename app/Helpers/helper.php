@@ -19,9 +19,9 @@ if (!function_exists('read')) {
      * Get an item from an array using "dot" notation after reading the file content.
      *
      * @param string $path [
-     *  - Format: {path.to.file}::{key_1.key_2.key_n}
+     *  - Format: {path.to.file}:{key_1.key_2.key_n}
      *    + path_to_file: path separated with dot without extension (example: app.Http.Controllers)
-     *    + `::` mark: optional. It is used to separate file path and keys
+     *    + `:` mark: optional. It is used to separate file path and keys
      *    + keys: The keys are separated together by `dot` mark
      * ]
      * @param mixed $default
@@ -31,7 +31,7 @@ if (!function_exists('read')) {
     {
         try {
             // Extract filename, keys and build the full path of file
-            $splits = explode('::', $path);
+            $splits = explode(':', $path);
             $path = $splits[0];
             $path = implode('/', explode('.', $path)).'.php';
 

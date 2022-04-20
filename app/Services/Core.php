@@ -6,6 +6,7 @@ use App\Services\Session;
 use App\Services\DBService;
 use App\Services\FileService;
 use App\Services\HttpService;
+use App\Services\Contracts\Mailer;
 use App\Services\EncrypterService;
 use Illuminate\Contracts\Auth\Factory as AuthFactory;
 
@@ -44,7 +45,7 @@ class Core
     }
 
     /**
-     * Http
+     * Http instance
      *
      * @param  mixed $http
      * @return \App\Services\HttpService
@@ -56,7 +57,7 @@ class Core
     }
 
     /**
-     * Encrypter
+     * Encrypter instance
      *
      * @return \App\Services\EncrypterService
      */
@@ -66,7 +67,7 @@ class Core
     }
 
     /**
-     * Session
+     * Session instance
      *
      * @return \App\Services\Session
      */
@@ -76,12 +77,22 @@ class Core
     }
 
     /**
-     * Storage
+     * Storage instance
      *
      * @return \App\Services\FileService
      */
     public static function storage()
     {
         return app()->make(FileService::class);
+    }
+
+    /**
+     * Mailer instance
+     *
+     * @return \App\Services\Contracts\Mailer
+     */
+    public static function mailer()
+    {
+        return app()->make(Mailer::class);
     }
 }

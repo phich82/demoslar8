@@ -89,11 +89,11 @@ trait AutoValidation
      */
     private function _getValidationRules(string $class, string $method)
     {
-        $namespace = read("{$this->validation_file_path}::namespace", true);
+        $namespace = read("{$this->validation_file_path}:namespace", true);
 
         // If `keys` contain namespace
         if ($namespace === true) {
-            return $this->_parseRules(read("{$this->validation_file_path}::rules.{$class}.{$method}"));
+            return $this->_parseRules(read("{$this->validation_file_path}:rules.{$class}.{$method}"));
         }
 
         if (!$namespace) {
@@ -108,7 +108,7 @@ trait AutoValidation
 
         $class = substr($class, strlen($namespace) + 1);
 
-        return $this->_parseRules(read("{$this->validation_file_path}::rules.{$class}.{$method}"));
+        return $this->_parseRules(read("{$this->validation_file_path}:rules.{$class}.{$method}"));
     }
 
     /**

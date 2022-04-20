@@ -161,10 +161,9 @@ class Validator
      */
     private static function _resolveRequestPath(Request $request = null)
     {
-        $config = read('app.Config.version');// config('version');
+        $config = config('version');
         if (empty($config)) {
-            // throw new Exception("Missing file `config/version.php`");
-            throw new Exception("Missing file `app/Config/version.php`");
+            throw new Exception("Missing file `config/version.php`");
         }
         if (!isset($config['api'])) {
             $config['api'] = self::_defaultConfig('api');
@@ -202,14 +201,25 @@ class Validator
         if (is_callable($requestPath)) {
             $requestPath = $requestPath($version, $requestAppendPath);
         } else {
-            $requestPath .= $requestAppendPath;
+            $versionPath = $version ? "/{$version}" : "";
+            $requestPath = str_replace(
+                ['{version}', '{:version}', '{append}', '{:append}'],
+                [$versionPath, $versionPath, $requestAppendPath, $requestAppendPath],
+                $requestPath
+            );
         }
         // Get request namespace
         $requestAppendPath = trim($requestAppendPath, '/');
         if (is_callable($requestNamespace)) {
             $requestNamespace = $requestNamespace($version, str_replace('/', '\\', $requestAppendPath));
         } else {
-            $requestNamespace .= str_replace('/', '\\', $requestAppendPath);
+            $versionNS = $version ? "\\{$version}" : "";
+            $requestAppendPath = str_replace('/', '\\', $requestAppendPath);
+            $requestNamespace = str_replace(
+                ['{version}', '{:version}', '{append}', '{:append}'],
+                [$versionNS, $versionNS, $requestAppendPath, $requestAppendPath],
+                $requestNamespace
+            );
         }
 
         return [
@@ -261,31 +271,13 @@ class Validator
     {
         return [
             'api' => [
-                'request_path' => function ($version = '', $module = '') {
-                    return base_path(
-                        "app/Api"
-                        .($version ? "/$version" : "")
-                        ."/Requests"
-                        .($module ? "/$module" : "")
-                    );
-                },
-                'request_namespace' => function ($version = '') {
-                    return "App\\Api".($version ? "\\{$version}" : "")."\\Request";
-                },
+                'request_path' => base_path("app/Api{:version}/Requests{:append}"),
+                'request_namespace' => "App\\Api{:version}\\Requests{:append}",
                 'mapping_request_append_paths' => [],
             ],
             'web' => [
-                'request_path' => function ($version = '', $module = '') {
-                    return base_path(
-                        "app/Http"
-                        .($version ? "/$version" : "")
-                        ."/Requests"
-                        .($module ? "/$module" : "")
-                    );
-                },
-                'request_namespace' => function ($version = '') {
-                    return "App\\Http".($version ? "\\{$version}" : "")."\\Request";
-                },
+                'request_path' => base_path("app/Http{:version}/Requests{:append}"),
+                'request_namespace' => "App\\Http{:version}Requests{:append}",
                 'mapping_request_append_paths' => [],
             ],
         ][$type];
