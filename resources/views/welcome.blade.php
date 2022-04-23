@@ -159,6 +159,9 @@
             <h3>ADMIN</h3>
             @endisadmin
 
+            <h3>
+                Can access to this screen: {{ $permission->canAccessScreen() ? 'YES' : 'NO' }}
+            </h3>
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

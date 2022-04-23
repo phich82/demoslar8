@@ -1,5 +1,17 @@
 <?php
 
+if (!function_exists('core')) {
+    /**
+     * Alias of \App\Services\Core class
+     *
+     * @return \App\Services\Core
+     */
+    function core()
+    {
+        return app()->make(\App\Services\Core::class);
+    }
+}
+
 if (!function_exists('isAdmin')) {
     function isAdmin()
     {

@@ -7,6 +7,7 @@ use App\Binding\Binding;
 use App\Services\DirectiveService;
 use App\Services\GateService;
 use App\Services\MacroService;
+use App\Services\ViewService;
 use App\Validation\ExtensionRule;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\ServiceProvider;
@@ -43,5 +44,8 @@ class AppServiceProvider extends ServiceProvider
 
         // Register gates
         GateService::register();
+
+        // Register view composer (share data to all views)
+        ViewService::register();
     }
 }

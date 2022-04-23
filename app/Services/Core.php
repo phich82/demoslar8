@@ -49,12 +49,12 @@ class Core
      * Get permission
      *
      * @param \Illuminate\Database\Eloquent\Collection $roles
-     * @return object
+     * @return object { canAccessScreen(), can($action:'read,update'|['read','update']) }
      */
     public static function permission($roles = null)
     {
         if (!auth()->check()) {
-            return optional(null);
+            return self::createObjectPermission(false, false);
         }
 
         $roles = $roles ?: auth()->user()->roles()->get();
@@ -63,7 +63,7 @@ class Core
         $permission = new stdClass();
         foreach ($roles as $role) {
             if (empty($role->permissions)) {
-                return optional(true);
+                return self::createObjectPermission(true, true);
             }
             foreach ($role->permissions as $type => $value) {
                 if ($type === 'actions') {
@@ -92,76 +92,18 @@ class Core
         // Check permission for accessing to screen and actions
         $currentRouteName = request()->route()->getName();
 
-        // Create a new object with two `canAccessScreen` and `can` properties
+        // Create a new object with two methods: `canAccessScreen` and `can`
         foreach ($permission->screens as $route => $actions) {
             if (preg_match("#^$route$#", $currentRouteName)) {
                 if (empty($actions)) {
                     $actions = $permission->actions;
                 }
                 $canAccessScreen = true;
-                return new class ($actions, $canAccessScreen) {
-                    private $actions = [];
-                    private $canAccessScreen = false;
-
-                    /**
-                     * Create an instance
-                     *
-                     * @param array $actions
-                     * @param boolean $canAccessScreen
-                     * @return void
-                     */
-                    public function __construct($actions = [], $canAccessScreen = false)
-                    {
-                        $this->actions = $actions;
-                        $this->canAccessScreen = $canAccessScreen;
-                    }
-
-                    /**
-                     * Check whether user have permission to access screen
-                     *
-                     * @return boolean
-                     */
-                    public function canAccessScreen()
-                    {
-                        return $this->canAccessScreen;
-                    }
-
-                    /**
-                     * User can do actions (CRUD) on screen
-                     *
-                     * @param string $action
-                     * @return boolean
-                     */
-                    public function can($action = null)
-                    {
-                        $action = explode(',', $action);
-                        return count(array_intersect($action, $this->actions)) === count($action);
-                    }
-                };
+                return self::createObjectPermission($actions, $canAccessScreen);
             }
         }
 
-        return new class () {
-            /**
-             * Check whether user have permission to access screen
-             *
-             * @return boolean
-             */
-            public function canAccessScreen()
-            {
-                return false;
-            }
-            /**
-             * User can do actions (CRUD) on screen
-             *
-             * @param string $action
-             * @return boolean
-             */
-            public function can($action = null)
-            {
-                return false;
-            }
-        };
+        return self::createObjectPermission(false, false);
     }
 
     /**
@@ -214,5 +156,60 @@ class Core
     public static function mailer()
     {
         return app()->make(Mailer::class);
+    }
+
+    /**
+     * Create an object for permission
+     *
+     * @param  array|bool $actions
+     * @param  bool $canAccessScreen
+     * @return object { canAccessScreen(), can($action:'read,update'|['read','update']) }
+     */
+    private static function createObjectPermission($actions = [], $canAccessScreen = false)
+    {
+        return new class ($actions, $canAccessScreen) {
+            private $actions = [];
+            private $canAccessScreen = false;
+
+            /**
+             * Create an instance
+             *
+             * @param array $actions
+             * @param boolean $canAccessScreen
+             * @return void
+             */
+            public function __construct($actions = [], $canAccessScreen = false)
+            {
+                $this->actions = $actions;
+                $this->canAccessScreen = $canAccessScreen;
+            }
+
+            /**
+             * Check whether user have permission to access screen
+             *
+             * @return boolean
+             */
+            public function canAccessScreen()
+            {
+                return $this->canAccessScreen;
+            }
+
+            /**
+             * User can do actions (CRUD) on screen
+             *
+             * @param string $action
+             * @return boolean
+             */
+            public function can($action = null)
+            {
+                if (is_bool($this->actions)) {
+                    return $this->actions;
+                }
+                if (!is_array($action)) {
+                    $action = explode(',', $action);
+                }
+                return count(array_intersect($action, $this->actions)) === count($action);
+            }
+        };
     }
 }

@@ -75,7 +75,7 @@ class User extends Authenticatable
     /**
      * Get permission
      *
-     * @return object
+     * @return object { canAccessScreen(), can($action:'read,update'|['read','update']) }
      */
     public function permission()
     {
