@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\RoleUser;
+use App\Traits\GetTableNameModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -9,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Role extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, GetTableNameModel;
 
     /**
      * The table associated with the model.
@@ -40,9 +42,36 @@ class Role extends Model
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        // JSON column
+        'permissions' => 'object',
+    ];
 
+    /**
+     * The users that belong to the role.
+     */
+    public function users()
+    {
+        return $this->belongsToMany(User::class, RoleUser::table(), RoleUser::$foreignKeyRole, RoleUser::$foreignKeyUser);
+    }
 
-
+    // public function isUserLogin()
+    // {
+    //     if (!auth()->check()) {
+    //         return false;
+    //     }
+    //     // Get all roles of logged in user
+    //     $rolesUser = auth()->user()->roles()->get()->map(function ($row) {
+    //         return $row->pivot->role_id;
+    //     })->toArray();
+    //     // Check whether it is logged in user
+    //     return count($this->newQuery()->whereIn('id', $rolesUser)->get()) > 0;
+    // }
 
     /**
      * The model's default values for attributes.

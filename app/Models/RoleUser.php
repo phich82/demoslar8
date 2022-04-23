@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\GetTableNameModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class RoleUser extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, GetTableNameModel;
 
     /**
      * The table associated with the model.
@@ -16,6 +17,9 @@ class RoleUser extends Model
      * @var string
      */
     protected $table = 'role_users';
+
+    public static $foreignKeyUser = 'user_id';
+    public static $foreignKeyRole = 'role_id';
 
     /**
      * The attributes that are mass assignable.

@@ -30,32 +30,62 @@ class DatabaseSeeder extends Seeder
                 'code' => 'admin',
                 'description' => 'This is administrator role with entire permissions.',
                 'created_at' => date('Y-m-d H:i:s'),
+                'permissions' => null,
             ],
             [
                 'name' => 'Management',
                 'code' => 'management',
                 'description' => 'This is management role with management permission.',
                 'created_at' => date('Y-m-d H:i:s'),
+                'permissions' => json_encode([
+                    'screens' => [
+                        'home' => ['create', 'read', 'update'],
+                        'settings.show' => ['read'],
+                    ],
+                    'actions' => ['create', 'read', 'update', 'delete'],
+                ])
             ],
             [
                 'name' => 'Restaurant',
                 'code' => 'restaurant',
                 'description' => 'This is restaurant role only for restaurant permission.',
                 'created_at' => date('Y-m-d H:i:s'),
+                'permissions' => json_encode([
+                    'screens' => [
+                        'home' => ['read'],
+                        'settings.*' => ['read', 'create', 'update'],
+                    ],
+                    'actions' => ['create', 'read', 'update'],
+                ])
             ],
             [
                 'name' => 'Shop',
                 'code' => 'shop',
                 'description' => 'This is shop role only for shop permission.',
                 'created_at' => date('Y-m-d H:i:s'),
+                'permissions' => json_encode([
+                    'screens' => [
+                        'home' => ['create', 'read'],
+                        'settings.index' => ['read'],
+                        'settings.show' => ['read'],
+                        'settings.update' => ['read'],
+                        'settings.destroy' => ['read', 'delete'],
+                    ],
+                    'actions' => ['create', 'read', 'update'],
+                ])
             ],
         ]);
 
         // Assign roles to users
-        for ($i=1; $i < 500; $i++) {
+        for ($i=0; $i < 500; $i++) {
+            $mapping = [
+                497 => [1001, 1],
+                498 => [1002, 1],
+                499 => [1003, 2],
+            ];
             DB::table('role_users')->insert([
-                'user_id' => $faker->numberBetween(1, 1000),
-                'role_id' =>  $faker->numberBetween(1, 4),
+                'user_id' => !isset($mapping[$i]) ? $faker->numberBetween(1, 1000) : $mapping[$i][0],
+                'role_id' => !isset($mapping[$i]) ? $faker->numberBetween(1, 4) : $mapping[$i][1],
                 'created_at' => date('Y-m-d H:i:s'),
             ]);
         }
@@ -63,10 +93,10 @@ class DatabaseSeeder extends Seeder
         // Insert screens
         DB::table('screens')->insert([
             [
-                'name' => 'Dashboard',
-                'route' => 'dashboard.index',
+                'name' => 'Home',
+                'route' => 'home',
                 'parent' => null,
-                'description' => 'This is dashboard screen.',
+                'description' => 'This is home screen.',
                 'created_at' => date('Y-m-d H:i:s'),
             ],
             [
@@ -77,8 +107,29 @@ class DatabaseSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'name' => 'Settings',
+                'name' => 'Setting List',
                 'route' => 'settings.index',
+                'parent' => null,
+                'description' => 'This is settings screen.',
+                'created_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'Setting Detail',
+                'route' => 'settings.show',
+                'parent' => null,
+                'description' => 'This is settings screen.',
+                'created_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'Setting Edit',
+                'route' => 'settings.update',
+                'parent' => null,
+                'description' => 'This is settings screen.',
+                'created_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'Setting Delete',
+                'route' => 'settings.destroy',
                 'parent' => null,
                 'description' => 'This is settings screen.',
                 'created_at' => date('Y-m-d H:i:s'),

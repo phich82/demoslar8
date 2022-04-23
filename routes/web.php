@@ -1,21 +1,24 @@
 <?php
 
+use App\Models\Role;
 use App\Models\User;
 use App\Models\Order;
 use App\Mail\NewOrder;
 use App\Services\Core;
+use App\Models\RoleUser;
 use App\Mail\OrderShipped;
 use App\Services\DBService;
 use Illuminate\Mail\Mailer;
 use Illuminate\Support\Str;
+use App\Jobs\TestRabbitMQJob;
 use App\Services\AuthService;
 use App\Services\UserService;
 use App\Events\LoginSubscriber;
 use App\Events\LogoutSubscriber;
+// use App\Services\HttpService;
 use App\Events\LocalNotification;
 use App\Events\OrderNormalChannel;
 use App\Events\ChatPresenceChannel;
-// use App\Services\HttpService;
 use App\Events\OrderPrivateChannel;
 use App\Repositories\RoleRepository;
 use App\Repositories\UserRepository;
@@ -30,9 +33,8 @@ use App\Events\LocalNotificationQueue;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Cache\RateLimiting\Limit;
 use App\Http\Middleware\VerifyPermission;
-use App\Jobs\TestRabbitMQJob;
-use App\Services\Facades\Mailer as FacadesMailer;
 use Illuminate\Support\Facades\RateLimiter;
+use App\Services\Facades\Mailer as FacadesMailer;
 
 /*
 |--------------------------------------------------------------------------
@@ -166,13 +168,37 @@ Route::get('/pagination', function (UserService $userService) {
     return view('test', ['pagination' => DBService::paginate($sql3)]);
 });
 
-Route::get('/permission', function (User $user) {
+Route::get('/permission', function (User $user, Role $role, RoleUser $roleUser) {
+    dd(
+        Core::auth()->user()->permission()->canAccessScreen(),
+        Core::auth()->user()->permission()->can('read'),
+        Core::auth()->user()->permission()->can('update'),
+        Core::auth()->user()->roles()->first()->permissions,
+        Core::auth()->user()->role(),
+        Core::auth()->user()->roles()->get(),
+        Core::auth()->user()->roles()->get()->map(function ($r) {
+            return $r->pivot->role_id;
+        })->toArray(),
+        Core::auth()->user()->isAdmin(),
+        auth()->user()->id,
+        Role::find(1)->users()->wherePivot('user_id', auth()->user()->id)->get(),
+        // (new Role)->isUserLogin()
+        // User::table(),
+        // User::primaryKey(),
+        // Role::table(),
+        // Role::primaryKey(),
+        // RoleUser::table(),
+        // RoleUser::primaryKey(),
+        // RoleUser::$foreignKeyRole,
+        // RoleUser::$foreignKeyUser,
+    );
+
     dd($user->isAdmin());
     dd(
         Core::auth(),
         AuthService::auth(),
     );
-});
+})->name('settings.index');
 
 Route::get('versioning', function () {
     // Get basic information from config file

@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Exception;
 use App\Binding\Binding;
+use App\Services\DirectiveService;
+use App\Services\GateService;
+use App\Services\MacroService;
 use App\Validation\ExtensionRule;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\ServiceProvider;
@@ -29,23 +32,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Create a macro as http service for APIs
-        Http::macro('api', function () { // for web APIs
-            $config = config('api.web');
-            if (empty($config)) {
-                throw new Exception("Missing `config/api.php` file or `web` key.");
-            }
-            return Http::withHeaders($config['headers'])->baseUrl($config['base_url']);
-        });
-        Http::macro('google', function () { // for Google APIs
-            $config = config('api.google');
-            if (empty($config)) {
-                throw new Exception("Missing `config/api.php` file or `google` key.");
-            }
-            return Http::withHeaders($config['headers'])->baseUrl($config['base_url']);
-        });
+        // Register macros
+        MacroService::register();
 
         // Register more rules defined by user
         ExtensionRule::register();
+
+        // Register blades (directives)
+        DirectiveService::register();
+
+        // Register gates
+        GateService::register();
     }
 }

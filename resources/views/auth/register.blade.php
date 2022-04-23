@@ -22,6 +22,7 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+
                             </div>
                         </div>
 
@@ -36,6 +37,11 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+
+                                @err('email')@enderr
+
+                                <x-error :field="'email'" />
+
                             </div>
                         </div>
 

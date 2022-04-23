@@ -42,18 +42,11 @@ class RabbitMQServiceProvider extends ServiceProvider
             });
 
             $this->commands([
-                // Console\ConsumeCommand::class,
                 \App\Services\Implementations\RabbitMQ\Console\ConsumeCommand::class,
             ]);
         }
 
         $this->commands([
-            // Console\ExchangeDeclareCommand::class,
-            // Console\ExchangeDeleteCommand::class,
-            // Console\QueueBindCommand::class,
-            // Console\QueueDeclareCommand::class,
-            // Console\QueueDeleteCommand::class,
-            // Console\QueuePurgeCommand::class,
             \App\Services\Implementations\RabbitMQ\Console\ExchangeDeclareCommand::class,
             \App\Services\Implementations\RabbitMQ\Console\ExchangeDeleteCommand::class,
             \App\Services\Implementations\RabbitMQ\Console\QueueBindCommand::class,

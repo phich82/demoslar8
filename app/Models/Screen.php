@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\GetTableNameModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Screen extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, GetTableNameModel;
 
     /**
      * The table associated with the model.

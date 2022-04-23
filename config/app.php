@@ -183,8 +183,6 @@ return [
         App\Providers\PredisFileSystemServiceProvider::class,
         App\Providers\SFTPFileSystemServiceProvider::class,
         App\Providers\StashFileSystemServiceProvider::class,
-        // Directives
-        App\Providers\DirectivesServiceProvider::class,
         // Register common events
         App\Providers\RegisterCommonEventsServiceProvider::class,
         // Versioning APIs

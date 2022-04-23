@@ -129,22 +129,6 @@
                     </div>
                 </div>
             </div>
-            <h1>
-                <?php $a = 1; ?>
-                @php
-                    $a = new stdClass();
-                    $a->role = 'admin';
-                @endphp
-
-                @if ($a->role == 'admin')
-                KO
-                @else
-                YES
-                @endif
-                @role($a)
-                OK
-                @endrole
-            </h1>
 
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -155,6 +139,26 @@
                     </ul>
                 </div>
             @endif
+            <?php
+                $a = ['phone', 'android'];
+                $b = new stdClass();
+                $b->a = 2;
+                $b->t = [1,2];
+            ?>
+            @php $t = ['windows xp 2005']; @endphp
+            <div>@upper($b->a)</div>
+            <div>@lower($a[1])</div>
+            <h4>@cap("hello world's mary line")</h4>
+            <h5>@upper($t[0])</h5>
+
+            @css('test.css')
+            @includeCSS('demo.css')
+            @importCSS('try.css')
+
+            @isadmin()
+            <h3>ADMIN</h3>
+            @endisadmin
+
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -207,4 +211,5 @@
             });
         </script>
     </body>
+    @js('test.js')
 </html>
