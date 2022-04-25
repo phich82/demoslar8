@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Order;
-use App\Broadcasting\OrderChannel;
+use App\Broadcasting\TestBroadcast;
 use Illuminate\Support\Facades\Broadcast;
 
 /*
@@ -20,8 +20,8 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
 
-// // Presence Channels (via Channel (Broadcasting) Class)
-Broadcast::channel('order.{orderId}', OrderChannel::class);
+// Presence Channels (via Channel (Broadcasting) Class)
+Broadcast::channel('test.{id}', TestBroadcast::class);
 
 // Normal & Private Channels
 Broadcast::channel('orders.{orderId}', function ($user, $orderId) {

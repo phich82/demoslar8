@@ -40,6 +40,11 @@ class ScheduleService
     /**
      * Define the application's command schedule.
      *
+     * @notes [
+     *  - Using cron: * * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
+     *  - Running locally: php artisan schedule:work
+     * ]
+     *
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
      */
@@ -66,11 +71,11 @@ class ScheduleService
             ->onFailure(function () {
                 //TODO: The task failed...
             });
-    
+
         // $schedule->command(SendMailCommand::class, ['phich82@gmail.com'])->everyMinute();
 
         // Scheduling Queued Jobs
-        // $schedule->job(new Heartbeat)->everyMinute();
+        // $schedule->job(new NewJob)->everyMinute();
 
         // Scheduling Shell Commands
         // $schedule->exec('node /home/forge/script.js')->everyMinute();

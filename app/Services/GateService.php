@@ -19,36 +19,40 @@ class GateService
         // 1.1 Run before all other authorization checks
         // If returns a non-null result, result will be considered the result of the authorization check
         Gate::before(function ($user, $ability) {
-            dd(2222);
-            if ($user->isAdmin()) {
-                return true;
-            }
+            // dd($user, $ability);
         });
         // 1.2 Executed after all other authorization checks
         // If returns a non-null result, result will be considered the result of the authorization check
         Gate::after(function ($user, $ability, $result, $arguments) {
-            if ($user->isAdmin()) {
-                return true;
-            }
+            // dd($user, $ability, $result, $arguments);
         });
 
-        // Define a gate for managing accessing screens
-        // Return bool
-        Gate::define('access-page', function (User $user) {
-            return in_array($user->role, ['admin', 'management']);
+        /**
+         * Define a permission gate for accessing screens
+         *
+         * - Default middleware in laravel for Gate is `can`.
+         * - Uasge:
+         *   middleware(['can:access.screen']) or
+         *   middleware('can:access.screen') or
+         *   can('access.screen')
+         */
+        Gate::define('access.screen', function (User $user) {
+            return core()->permission()->canAccessScreen();
         });
 
-        // Define a gate for managing accessing screens
-        // Return bool
-        Gate::define('access-screen', function (User $user) {
-            return in_array($user->role, ['admin', 'management']);
-        });
-
-        // Return a Response instance with error message
-        Gate::define('edit-settings', function (User $user) {
-            return $user->isAdmin
-                        ? Response::allow()
-                        : Response::deny('You must be an administrator.');
+        /**
+         * Define a permission gate for actions (CRUD)
+         *
+         * - Default middleware in laravel for Gate is `can`.
+         * - Uasge:
+         *   middleware(['can:can,"update","read","create","delete"']) or
+         *   can('can', ['"update"','"read"','"create"','"delete"'])
+         */
+        Gate::define('can', function (User $user) {
+            $actions = func_get_args();
+            // Remove 1st argument (User)
+            array_shift($actions);
+            return core()->permission()->can($actions);
         });
     }
 }

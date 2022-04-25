@@ -9,16 +9,10 @@ class DirectiveService
 {
     public static function register()
     {
-        // @icon()
+        // @icon('<type>')
         Blade::directive('icon', function ($expression) {
-            eval("\$args = [$expression];");
-            dd($args);
-            // The $expression passed in closure is a string in format '($name), value'
-            // Hence we first remove the paranthesis and explode by comma
             $classes = str_replace(['(', ')'], '', $expression);
-            $classes = str_replace(['"', '\''], '', $expression);
-            $classes = str_replace(',', ' ', $classes);
-
+            $classes = trim(trim($classes, '"'), '\'');
             return '<i class="fa ' . $classes . '" aria-hidden="false"></i>';
         });
         // @datetime(<format>)
@@ -88,27 +82,41 @@ class DirectiveService
             if (!auth()->check()) {
                 return false;
             }
-
             foreach (auth()->user()->roles()->get() as $role) {
                 if ($role->code === 'admin') {
                     return true;
                 }
             }
-
             return false;
         });
-        // @isrole()@endisrole
-        Blade::if('isRole', function ($role) {
-
+        // @isrole('admin|manager|development')@endisrole
+        Blade::if('isRole', function ($roleCode) {
             // Not logged in
             if (!auth()->check()) {
                 return false;
             }
+            foreach (auth()->user()->roles()->get() as $role) {
+                if ($role->code === $roleCode) {
+                    return true;
+                }
+            }
+            return false;
+        });
 
-            $rolesUser = auth()->user()->role;
-            $rolesUser = is_array($rolesUser) ? $rolesUser : [$rolesUser];
-
-            return in_array($role, $rolesUser);
+        // @showerror()@endshowerror
+        Blade::if('showerror', function () {
+            $out = '';
+            $errors = Session::get('errors', new \Illuminate\Support\MessageBag);
+            if ($errors->any()) {
+                $out .= '<div class="alert alert-danger">';
+                $out .= '<ul>';
+                foreach ($errors->all() as $error) {
+                    $out .= "<li>{{ $error }}</li>";
+                }
+                $out .= '</ul>';
+                $out .= '</div>';
+            }
+            return $out;
         });
 
         // <x-error/>

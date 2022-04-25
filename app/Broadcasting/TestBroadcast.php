@@ -3,11 +3,10 @@
 namespace App\Broadcasting;
 
 use App\Models\User;
-use App\Models\Order;
 
-class OrderChannel
+class TestBroadcast
 {
-    public $order;
+    public $data;
 
     /**
      * Create a new channel instance.
@@ -23,16 +22,16 @@ class OrderChannel
      * Authenticate the user's access to the channel.
      *
      * @param  \App\Models\User  $user
-     * @param  int  $orderId
+     * @param  int  $id
      * @return array|bool
      */
-    public function join(User $user, $orderId)
+    public function join(User $user, $id = null)
     {
-        $this->order = Order::findOrFail($orderId);
-        if ($user->id === $this->order->user_id) {
+        $this->data = ['id' => $id];
+        if (!empty($this->data)) {
             return [
                 'user_id' => $user->id,
-                'order' => $this->order,
+                'data' => $this->data,
             ];
         }
         return false;

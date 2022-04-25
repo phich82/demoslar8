@@ -22,6 +22,7 @@
     </head>
     <body class="antialiased">
         <div id="app">
+            @showerror()@endshowerror
             <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
                 @if (Route::has('login'))
                     <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
@@ -129,90 +130,20 @@
                     </div>
                 </div>
             </div>
-
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-            <?php
-                $a = ['phone', 'android'];
-                $b = new stdClass();
-                $b->a = 2;
-                $b->t = [1,2];
-            ?>
-            @php $t = ['windows xp 2005']; @endphp
-            <div>@upper($b->a)</div>
-            <div>@lower($a[1])</div>
-            <h4>@cap("hello world's mary line")</h4>
-            <h5>@upper($t[0])</h5>
-
-            @css('test.css')
-            @includeCSS('demo.css')
-            @importCSS('try.css')
-
-            @isadmin()
-            <h3>ADMIN</h3>
-            @endisadmin
-
-            <h3>
-                Can access to this screen: {{ $permission->canAccessScreen() ? 'YES' : 'NO' }}
-            </h3>
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="{{ asset('js/app.js') }}"></script>
-        <script>
-            $(function() {
-                // Presence Channels (via Channel Class)
-                Echo.join(`order.1`)
-                    .here((users) => {
-                        console.log({ order: users })
-                    })
-                    .joining((user) => {
-                        console.log({ joining: user });
-                    })
-                    .leaving((user) => {
-                        console.log({ leaving: user });
-                    })
-                    .error((error) => {
-                        console.error({ order_error: error });
-                    });
-
-                // Presence Channels
-                let roomId = 1;
-                Echo.join(`chat.${roomId}`)
-                    .here((users) => {
-                        console.log({ presence_channel: users })
-                    })
-                    .joining((user) => {
-                        console.log({ joining: user });
-                    })
-                    .leaving((user) => {
-                        console.log({ leaving: user });
-                    })
-                    .error((error) => {
-                        console.error({ presence_channel_error: error });
-                    })
-                    .listen('.ChatPresenceChannel', (e) => {
-                        console.log({ presence_channel: { message: e } });
-                    });
-
-                // Private Channels
-                let orderId = 1;
-                // For security reason, prefix '.' right before event name
-                Echo.channel(`orders.${orderId}`).listen('.OrderNormalChannel', (e) => {
-                    console.log({ channel: e });
-                });
-                Echo.private(`orders.${orderId}`).listen('.OrderPrivateChannel', (e) => {
-                    console.log({ private_channel: e });
-                });
-            });
+        <script type="text/javascript">
+            window.flashMessages = {
+                success: { class: 'alert-success', message: "{{ session('success') }}" },
+                info   : { class: 'alert-info', message   : "{{ session('info') }}" },
+                warning: { class: 'alert-warning', message: "{{ session('warning') }}" },
+                error  : { class: 'alert-error', message  : "{{ session('error') }}" },
+            };
+            window.serverErrors = @json(isset($errors) ? $errors->getMessages() : []);
         </script>
+        <script src="{{ asset('js/app.js') }}"></script>
+        @js('broadcast.js')
+
     </body>
-    @js('test.js')
 </html>

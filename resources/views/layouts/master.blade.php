@@ -30,9 +30,9 @@
         <div id="app">
             <!-- <flash-wrapper ref='flashes'></flash-wrapper> -->
 
-            @include ('admin::layouts.topnav')
+            @include ('admin::layouts.top')
 
-            @include ('admin::layouts.leftnav')
+            @include ('admin::layouts.left')
 
             <div class="content-container">
                 @yield('content')

@@ -30,9 +30,9 @@
         <div id="app">
             <!-- <flash-wrapper ref='flashes'></flash-wrapper> -->
 
-            @include ('admin::layouts.topnav')
+            @include ('admin::layouts.top')
 
-            @include ('admin::layouts.leftnav')
+            @include ('admin::layouts.left')
 
             <div class="content-container">
                 @yield('content')
@@ -44,25 +44,6 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-        <script type="text/javascript">
-            // window.flashMessages = [];
-
-            // @if ($success = session('success'))
-            //     window.flashMessages = [{'type': 'alert-success', 'message': "{{ $success }}" }];
-            // @elseif ($warning = session('warning'))
-            //     window.flashMessages = [{'type': 'alert-warning', 'message': "{{ $warning }}" }];
-            // @elseif ($error = session('error'))
-            //     window.flashMessages = [{'type': 'alert-error', 'message': "{{ $error }}" }];
-            // @elseif ($info = session('info'))
-            //     window.flashMessages = [{'type': 'alert-info', 'message': "{{ $info }}" }];
-            // @endif
-
-            // window.serverErrors = [];
-            // @if (isset($errors) && count($errors))
-            //     window.serverErrors = @json($errors->getMessages());
-            // @endif
-        </script>
 
         @stack('scripts')
     </body>

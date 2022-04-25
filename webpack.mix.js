@@ -10,8 +10,12 @@ const mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
-
-mix.js('resources/js/app.js', 'public/js')
+mix.js([
+        // mix js files into a single js file
+        'resources/js/app.js',
+        // 'resources/js/broadcast.js',
+    ], 'public/js')
+    .js('resources/js/broadcast.js', 'public/js/broadcast.js')
     .vue()
     .sass('resources/sass/app.scss', 'public/css')
     .copyDirectory('resources/images', 'public/images')

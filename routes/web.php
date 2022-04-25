@@ -23,6 +23,7 @@ use App\Events\OrderPrivateChannel;
 use App\Repositories\RoleRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use App\Services\Facades\FileService;
@@ -48,12 +49,21 @@ use App\Services\Facades\Mailer as FacadesMailer;
 */
 
 Route::get('/', function () {
+    // dd(
+    //     Gate::allows('access.screen'),
+    //     Gate::allows('can', ['update'])
+    // );
     return view('welcome');
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')
+    // ->middleware('can:can,"update","read","delete"')
+    // ->middleware(['can:can,"update","read","delete"', 'can:access.screen'])
+    ->can('can', ['"update"', '"read"', '"create"', '"delete"'])
+    // ->can('access.screen')
+    ;
 ///////////////////////////////////////////////////////////////////
 
 Route::get('/broadcast-normal', function () {
